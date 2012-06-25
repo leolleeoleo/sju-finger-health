@@ -1,0 +1,2 @@
+@echo off
+keytool -genkey -dname "cn=Leo Hsueh, ou=FingerHealth, o=SJU EE, l=TaiPei, st=Taiwan, c=TW" -alias fingerapplet -keypass fhfakp -keystore C:\NetBeansProject\FingerHealth\FingerApplet\keystore -storepass fhfaks

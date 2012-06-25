@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="80">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <logicalFolder name="HeaderFiles"
+                   displayName="Header Files"
+                   projectFiles="true">
+    </logicalFolder>
+    <logicalFolder name="ResourceFiles"
+                   displayName="Resource Files"
+                   projectFiles="true">
+    </logicalFolder>
+    <logicalFolder name="SourceFiles"
+                   displayName="Source Files"
+                   projectFiles="true">
+      <itemPath>src/base.c</itemPath>
+      <itemPath>src/base.h</itemPath>
+      <itemPath>src/client.c</itemPath>
+      <itemPath>src/client.h</itemPath>
+      <itemPath>src/config.c</itemPath>
+      <itemPath>src/config.h</itemPath>
+      <itemPath>src/flash.c</itemPath>
+      <itemPath>src/flash.h</itemPath>
+      <itemPath>src/iap.asm</itemPath>
+      <itemPath>src/iap.h</itemPath>
+      <itemPath>src/iic.c</itemPath>
+      <itemPath>src/iic.h</itemPath>
+      <itemPath>src/interrupt.c</itemPath>
+      <itemPath>src/interrupt.h</itemPath>
+      <itemPath>src/keyboard.c</itemPath>
+      <itemPath>src/keyboard.h</itemPath>
+      <itemPath>src/lcd.c</itemPath>
+      <itemPath>src/lcd.h</itemPath>
+      <itemPath>src/lcd1602.c</itemPath>
+      <itemPath>src/lcd1602.h</itemPath>
+      <itemPath>src/main.c</itemPath>
+      <itemPath>src/ra8806.c</itemPath>
+      <itemPath>src/ra8806.h</itemPath>
+      <itemPath>src/ra8806reg.h</itemPath>
+      <itemPath>src/sc16is752.c</itemPath>
+      <itemPath>src/sc16is752.h</itemPath>
+      <itemPath>src/sc16is752reg.h</itemPath>
+      <itemPath>src/sim300.c</itemPath>
+      <itemPath>src/sim300.h</itemPath>
+      <itemPath>src/spi.c</itemPath>
+      <itemPath>src/spi.h</itemPath>
+      <itemPath>src/state.c</itemPath>
+      <itemPath>src/state.h</itemPath>
+      <itemPath>src/tfs_m51.c</itemPath>
+      <itemPath>src/tfs_m51.h</itemPath>
+      <itemPath>src/touch.c</itemPath>
+      <itemPath>src/touch.h</itemPath>
+      <itemPath>src/uart.c</itemPath>
+      <itemPath>src/uart.h</itemPath>
+    </logicalFolder>
+    <logicalFolder name="TestFiles"
+                   displayName="Test Files"
+                   projectFiles="false"
+                   kind="TEST_LOGICAL_FOLDER">
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>Makefile</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <projectmakefile>Makefile</projectmakefile>
+  <confs>
+    <conf name="Debug" type="1">
+      <toolsSet>
+        <remote-sources-mode>LOCAL_SOURCES</remote-sources-mode>
+        <compilerSet>default</compilerSet>
+      </toolsSet>
+      <compileType>
+      </compileType>
+    </conf>
+    <conf name="Release" type="1">
+      <toolsSet>
+        <remote-sources-mode>LOCAL_SOURCES</remote-sources-mode>
+        <compilerSet>default</compilerSet>
+      </toolsSet>
+      <compileType>
+        <cTool>
+          <developmentMode>5</developmentMode>
+        </cTool>
+        <ccTool>
+          <developmentMode>5</developmentMode>
+        </ccTool>
+        <fortranCompilerTool>
+          <developmentMode>5</developmentMode>
+        </fortranCompilerTool>
+        <asmTool>
+          <developmentMode>5</developmentMode>
+        </asmTool>
+      </compileType>
+    </conf>
+  </confs>
+</configurationDescriptor>
