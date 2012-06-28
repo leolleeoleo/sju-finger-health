@@ -20,6 +20,7 @@
         <head>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
             <title><h:outputText value="#{msgs.title}"/></title>
+
         </head>
 
         <body class="ColFixLtHdr">
@@ -35,10 +36,13 @@
                     </h:form>
                 </div>
                 <div id="mainContent">
-                    <h1> 主要內容 </h1>
-                    <p>Lorem ipsum dolor sit.</p>
-                    <h2>H2 層級標題 </h2>
-                    <p>Lorem ipsum dolor sit.</p>
+                    <h1><h:outputText value="#{msgs.login}"/></h1>                
+                    <h:form> 
+                        <p><h:outputText value="#{user.info}"/></p>
+                        <p>帳號:<h:inputText value="#{user.account}"/></p>
+                        <p>密碼:<h:inputSecret value="#{user.password}"/></p>
+                        <p><h:commandButton value="送出" action="#{user.login()}"/></p>
+                    </h:form>
                 </div>
                 <div id="footer">
                     <p>Copyright ©2012 Health management system by Fingerprint / St. John's University  . All Rights Reserved.
