@@ -38,14 +38,22 @@ body  {
 	padding-bottom: 15px;
 	padding-left: 20px;
 }
+.ColFixLtHdr #sidebar2 {
+	width: auto; /* 在符合標準的瀏覽器或 Internet Explorer 的標準模式中，這個 Div 的實際寬度 (除了寬度以外) 將會包含欄位間隔和邊框 */
+	background: #FFFF99;
+	padding-top: 15px;
+	padding-right: 10px;
+	padding-bottom: 15px;
+	padding-left: 20px;
+}
 .ColFixLtHdr #mainContent { 
 	padding: 0 20px; /* 請記住，欄位間隔就是 Div 方塊內部的空間，而邊界就是 Div 方塊外部的空間 */
 } 
-.ColFixLtHdr #footer { 
+.ColFixLtHdr #copyright { 
 	padding: 0 10px 0 20px; /* 這個欄位間隔符合上面顯示的 Div 中，元素的靠左對齊。 */
 	background:#DDDDDD; 
 } 
-.ColFixLtHdr #footer p {
+.ColFixLtHdr #copyright p {
 	margin: 0; /* 將頁尾中第一個元素的邊界調整為零可避免邊界收合的可能性 (Div 之間出現的空間) */
 	padding: 10px 0; /* 這個元素的欄位間隔將會建立空間，就如同邊界一樣，但是沒有邊界收合的問題 */
 }
