@@ -4,8 +4,13 @@
  */
 package edu.sju.ee98.health.web.beans;
 
-import java.beans.*;
+import edu.sju.ee98.health.server.sql.SQL;
+import edu.sju.ee98.health.server.sql.User;
+import edu.sju.ee98.health.web.Manager;
+import edu.sju.ee98.sql.Table;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
 /**
  *
@@ -17,6 +22,7 @@ public class UserBean implements Serializable {
     private String account;
     private String password;
     private String name;
+    private User user;
 
     public UserBean() {
     }
@@ -45,19 +51,47 @@ public class UserBean implements Serializable {
         this.password = password;
     }
 
-    public String getName() {
-        return "ABC";
+    public User getUser() {
+        return user;
     }
 
-    public String login() {
+    public String getName() {
+        return this.user.getLAST_NAME() + this.user.getFIRST_NAME();
+    }
+
+    public String getId() {
+        return this.user.getUID();
+    }
+
+    public String getBirth() {
+        return new SimpleDateFormat("yyyy/MM/dd").format(this.user.getBIRTHDAY());
+    }
+
+    public String getAddress() {
+        return this.user.getADDRESS();
+    }
+
+    public String getEmail() {
+        return this.user.getEmail();
+    }
+
+    public String getPhone() {
+        return this.user.getPHONE();
+    }
+
+    public boolean login() {
         if (account == null || password == null) {
-            return "LOGIN";
-        } else if (account.equals("aaa") && password.equals("bbb")) {
-            this.info = "";
-            return "LOGON";
+            return false;
         } else {
-            this.info = "帳號或密碼錯誤";
-            return "LOGIN";
+            ArrayList<Table> logInUser = Manager.sql.logInUser(account, password);
+            if (logInUser.size() > 0) {
+                this.user = (User) logInUser.get(0);
+                this.info = "";
+                return true;
+            } else {
+                this.info = "帳號或密碼錯誤";
+                return false;
+            }
         }
     }
 }
