@@ -37,6 +37,8 @@ public class Member extends HttpServlet {
         HttpSession session = request.getSession();
         UserBean user = (UserBean) session.getAttribute("user");
         String action = request.getParameter("action");
+        String account = request.getParameter("account");
+        String password = request.getParameter("password");
         if (action == null) {
             getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
         } else if (action.equals("logout")) {
@@ -49,17 +51,13 @@ public class Member extends HttpServlet {
                 user = new UserBean();
                 session.setAttribute("user", user);
             }
-            if (!user.login()) {
-                user.setAccount(request.getParameter("account"));
-                user.setPassword(request.getParameter("password"));
-            }
-            if (user.login()) {
+            if (user.login(account, password)) {
                 getServletContext().getRequestDispatcher("/member.jsp").forward(request, response);
             } else {
                 getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
             }
         } else {
-            if (user.login()) {
+            if (user.login(account, password)) {
                 getServletContext().getRequestDispatcher("/" + action + ".jsp").forward(request, response);
             } else {
                 getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);

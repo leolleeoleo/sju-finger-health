@@ -1,6 +1,6 @@
 <%-- 
-    Document   : climb
-    Created on : 2012/6/29, 下午 11:59:24
+    Document   : expend
+    Created on : 2012/6/30, 下午 02:43:50
     Author     : Leo
 --%>
 
@@ -25,12 +25,12 @@
             <%@ include file="member.html" %>
             <div id="mainContent">
                 <jsp:useBean id="user" class="edu.sju.ee98.health.web.beans.UserBean" scope="session"/>
-                <h1>登山紀錄</h1>
+                <h1>消費紀錄</h1>
                 <%
-                    ArrayList<String> record = Manager.SQL().selectRecord(user.getUser());
-                    for (int i = 0; i < record.size(); i++) {
+                    ArrayList<String> expend = Manager.SQL().selectExpend(user.getUser());
+                    for (int i = 0; i < expend.size(); i++) {
                 %>
-                <p><%out.print(record.get(i));%></p>
+                <p><%out.print(expend.get(i));%></p>
                 <%
                     }
                 %>

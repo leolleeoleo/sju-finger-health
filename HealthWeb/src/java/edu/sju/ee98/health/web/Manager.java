@@ -5,6 +5,9 @@
 package edu.sju.ee98.health.web;
 
 import edu.sju.ee98.health.server.sql.SQL;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -12,5 +15,16 @@ import edu.sju.ee98.health.server.sql.SQL;
  */
 public class Manager {
 
-    public static final SQL sql = new SQL("163.21.76.50", "health_test", "finger", "health");
+    private static SQL sql = null;
+
+    public static SQL SQL() {
+        if (sql == null) {
+            try {
+                sql = new SQL("163.21.76.50", "health_test", "finger", "health");
+            } catch (SQLException ex) {
+                Logger.getLogger(Manager.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return sql;
+    }
 }
