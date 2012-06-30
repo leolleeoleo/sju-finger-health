@@ -1,6 +1,6 @@
 <%-- 
-    Document   : climb
-    Created on : 2012/6/29, 下午 11:59:24
+    Document   : mileage
+    Created on : 2012/6/30, 下午 02:58:26
     Author     : Leo
 --%>
 
@@ -25,15 +25,14 @@
             <%@ include file="member.html" %>
             <div id="mainContent">
                 <jsp:useBean id="user" class="edu.sju.ee98.health.web.beans.UserBean" scope="session"/>
-                <h1>登山紀錄</h1>
+                <h1>里程統計</h1>
                 <%
-                    ArrayList<String> record = Manager.SQL().selectRecord(user.getUser());
-                    for (int i = 0; i < record.size(); i++) {
+                    int total = Manager.SQL().plusPoints(user.getUser());
+                    int expend = Manager.SQL().costPoints(user.getUser());
                 %>
-                <p><%out.print(record.get(i));%></p>
-                <%
-                    }
-                %>
+                <p>里程總數：<%out.print(total);%></p>
+                <p>里程使用：<%out.print(expend);%></p>
+                <p>里程累計：<%out.print(total - expend);%></p>
             </div>
             <%@ include file="copyright.html" %>
         </div>

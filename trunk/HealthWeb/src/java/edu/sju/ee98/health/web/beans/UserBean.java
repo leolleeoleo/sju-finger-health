@@ -19,9 +19,6 @@ import java.util.ArrayList;
 public class UserBean implements Serializable {
 
     private String info;
-    private String account;
-    private String password;
-    private String name;
     private User user;
 
     public UserBean() {
@@ -33,22 +30,6 @@ public class UserBean implements Serializable {
 
     public void setInfo(String info) {
         this.info = info;
-    }
-
-    public String getAccount() {
-        return account;
-    }
-
-    public void setAccount(String account) {
-        this.account = account;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public User getUser() {
@@ -79,11 +60,14 @@ public class UserBean implements Serializable {
         return this.user.getPHONE();
     }
 
-    public boolean login() {
+    public boolean login(String account, String password) {
+        if (this.user != null) {
+            return true;
+        }
         if (account == null || password == null) {
             return false;
         } else {
-            ArrayList<Table> logInUser = Manager.sql.logInUser(account, password);
+            ArrayList<Table> logInUser = Manager.SQL().logInUser(account, password);
             if (logInUser.size() > 0) {
                 this.user = (User) logInUser.get(0);
                 this.info = "";

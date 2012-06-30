@@ -25,9 +25,9 @@
 
                 <jsp:useBean id="user" class="edu.sju.ee98.health.web.beans.UserBean" scope="session"/>
                 <h1>你好<jsp:getProperty name="user" property="name"/></h1>
-                <p>Lorem ipsum dolor sit.</p>
-                <h2>H2 層級標題 </h2>
-                <p>Lorem ipsum dolor sit.</p>
+                <p></p>
+                <h2></h2>
+                <p></p>
             </div>
             <%@ include file="copyright.html" %>
         </div>
