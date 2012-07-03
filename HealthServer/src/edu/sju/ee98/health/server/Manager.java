@@ -6,8 +6,11 @@ package edu.sju.ee98.health.server;
 
 import edu.sju.ee98.health.server.finger.FingerModule;
 import edu.sju.ee98.health.server.finger.SerialFinger;
-import edu.sju.ee98.health.server.sql.SQL;
+import edu.sju.ee98.health.sql.SQL;
 import edu.sju.ee98.health.server.station.ServerNio;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *

@@ -4,7 +4,7 @@
  */
 package edu.sju.ee98.health.server.config;
 
-import edu.sju.ee98.health.server.sql.SQL;
+import edu.sju.ee98.health.sql.SQL;
 import java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -30,7 +30,8 @@ public class Database implements java.io.Serializable {
     }
 
     public SQL connecter() {
-        return new SQL(this.address, this.name, this.account, this.password);
+//        return new SQL(this.address, this.name, this.account, this.password);
+        return null;
     }
 
     public static Database read() {
