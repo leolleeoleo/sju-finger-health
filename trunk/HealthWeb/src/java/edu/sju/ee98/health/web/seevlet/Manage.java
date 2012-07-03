@@ -6,6 +6,7 @@ package edu.sju.ee98.health.web.seevlet;
 
 import edu.sju.ee98.health.web.beans.UserBean;
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,7 +17,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Leo
  */
-public class Member extends HttpServlet {
+public class Manage extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -31,9 +32,6 @@ public class Member extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        /*
-         * TODO output your page here. You may use following sample code.
-         */
         HttpSession session = request.getSession();
         UserBean user = (UserBean) session.getAttribute("user");
         String action = request.getParameter("action");
@@ -43,7 +41,7 @@ public class Member extends HttpServlet {
             request.setAttribute("account", null);
             request.setAttribute("password", null);
             session.setAttribute("user", null);
-            getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher("/root.jsp").forward(request, response);
         } else {
             if (user == null) {
                 user = new UserBean();
@@ -52,7 +50,7 @@ public class Member extends HttpServlet {
             if (user.login(request.getParameter("account"), request.getParameter("password"))) {
                 getServletContext().getRequestDispatcher("/" + action + ".jsp").forward(request, response);
             } else {
-                getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
+                getServletContext().getRequestDispatcher("/root.jsp").forward(request, response);
             }
         }
     }

@@ -1,6 +1,6 @@
 <%-- 
-    Document   : index
-    Created on : 2012/2/29, 上午 06:04:16
+    Document   : root
+    Created on : 2012/7/2, 下午 09:54:25
     Author     : Leo
 --%>
 
@@ -21,8 +21,8 @@
             </div>
             <%@ include file="menu.html" %>
             <div id="mainContent">
-                <h1>登入</h1>                
-                <form method="post" action="member?action=member">
+                <h1>管理</h1>
+                <form method="post" action="manage?action=manage">
                     <p>
                         <label>帳號:
                             <input type="text" name="account"/>
