@@ -4,9 +4,17 @@
         <servlet-name>Member</servlet-name>
         <servlet-class>edu.sju.ee98.health.web.seevlet.Member</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Manage</servlet-name>
+        <servlet-class>edu.sju.ee98.health.web.seevlet.Manage</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Member</servlet-name>
         <url-pattern>/member</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Manage</servlet-name>
+        <url-pattern>/manage</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

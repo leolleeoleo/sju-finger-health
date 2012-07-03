@@ -4,8 +4,8 @@
  */
 package edu.sju.ee98.health.web.beans;
 
-import edu.sju.ee98.health.server.sql.SQL;
-import edu.sju.ee98.health.server.sql.User;
+import edu.sju.ee98.health.sql.SQL;
+import edu.sju.ee98.health.sql.User;
 import edu.sju.ee98.health.web.Manager;
 import edu.sju.ee98.sql.Table;
 import java.io.Serializable;
