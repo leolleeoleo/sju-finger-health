@@ -4,10 +4,10 @@
  */
 package edu.sju.ee98.health.server;
 
+import edu.sju.ee98.health.sql.TestSQL;
 import edu.sju.ee98.fingerprint.tfsmodule.TFSCharacterize;
-import edu.sju.ee98.health.server.sql.Fingerprint;
-import edu.sju.ee98.health.server.sql.TestSQL;
-import edu.sju.ee98.health.server.sql.User;
+import edu.sju.ee98.health.sql.Fingerprint;
+import edu.sju.ee98.health.sql.User;
 import edu.sju.ee98.sql.Table;
 import java.io.IOException;
 import java.util.ArrayList;

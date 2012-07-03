@@ -2,8 +2,8 @@ package edu.sju.ee98.health.server.station;
 
 import edu.sju.ee98.fingerprint.tfsmodule.TFSCharacterize;
 import edu.sju.ee98.health.server.Manager;
-import edu.sju.ee98.health.server.sql.Register;
-import edu.sju.ee98.health.server.sql.User;
+import edu.sju.ee98.health.sql.Register;
+import edu.sju.ee98.health.sql.User;
 import edu.sju.ee98.sql.Table;
 import java.io.IOException;
 import java.nio.ByteBuffer;
