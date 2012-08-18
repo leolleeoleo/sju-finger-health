@@ -377,6 +377,7 @@ public class User implements Table {
         return sqlComm;
     }
 
+    @Override
     public void sqlSetter(ResultSet rs) {
         try {
             for (int i = 0; i < this.sqlObject.length; i++) {
