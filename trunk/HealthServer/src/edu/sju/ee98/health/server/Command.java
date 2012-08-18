@@ -4,12 +4,13 @@
  */
 package edu.sju.ee98.health.server;
 
-import edu.sju.ee98.health.sql.TestSQL;
 import edu.sju.ee98.fingerprint.tfsmodule.TFSCharacterize;
 import edu.sju.ee98.health.sql.Fingerprint;
 import edu.sju.ee98.health.sql.User;
 import edu.sju.ee98.sql.Table;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.logging.Level;
@@ -54,8 +55,8 @@ public class Command extends Thread {
             System.out.print(">");
             byte b[] = new byte[1024];
             try {
-                System.in.read(b);
-                String read = new String(b);
+                BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+                String read = br.readLine();
                 if (read.startsWith("help")) {
                     System.out.println("help");
                     System.out.println("service");
@@ -135,7 +136,7 @@ public class Command extends Thread {
                                 System.out.println(user.size());
                                 ((User) user.get(0)).print();
                             } catch (IOException ex) {
-                                Logger.getLogger(Command.class.getName()).log(Level.SEVERE, null, ex);
+                                Logger.getLogger(Command.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
                             }
                             Manager.module.getSerial().closePort();
                         } catch (SerialPortException ex) {
@@ -154,7 +155,7 @@ public class Command extends Thread {
                     } else if (read.startsWith("sql create")) {
                         Manager.sql.createTables();
                     } else if (read.startsWith("sql example")) {
-                        TestSQL.insertExample();
+//                        TestSQL.insertExample();
                     } else {
                         System.out.println("error");
                         System.out.println("sql drop");

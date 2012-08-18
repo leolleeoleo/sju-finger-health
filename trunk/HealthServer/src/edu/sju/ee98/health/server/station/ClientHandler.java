@@ -39,6 +39,7 @@ public class ClientHandler {
             buff.flip();
             String receive = new String(buff.array()).split("\r\n")[0];
             if (receive.split(":")[0].equals("LOGIN")) {
+                System.out.println(receive.split(":")[2]);
                 table = Manager.sql.logInRegister(receive.split(":")[1], receive.split(":")[2]);
                 if (table.isEmpty()) {
                     table = Manager.sql.logInUser(receive.split(":")[1], receive.split(":")[2]);
@@ -50,14 +51,16 @@ public class ClientHandler {
                 }
             } else if (receive.split(":")[0].equals("REG")) {
                 if (this.table.get(0) instanceof Register) {
-                    byte[] characterize = Arrays.copyOfRange(buff.array(), 4, 200);
+                    byte[] characterize = Arrays.copyOfRange(buff.array(), 13, 209);
+                    System.out.println(Arrays.toString(characterize));
                     try {
                         Manager.module.open();
                         try {
                             char num = Manager.module.compar(new TFSCharacterize(characterize));
+//                            char num = 5;
                             characterize = Manager.module.getCharacterize(num).getCharacterize();
                         } catch (IOException ex) {
-                            Logger.getLogger(ClientHandler.class.getName()).log(Level.SEVERE, null, ex);
+                            Logger.getLogger(ClientHandler.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
                         }
                         Manager.module.close();
                     } catch (SerialPortException ex) {
@@ -93,7 +96,7 @@ public class ClientHandler {
                     }
                     ArrayList<Table> user = Manager.sql.logInUser(characterize);
                     if (user.size() > 0) {
-                        if (Manager.sql.createCost(null, new Date(), ((User) table.get(0)).getUID(), ((User) user.get(0)).getUID(), expend) != null) {
+                        if (Manager.sql.createCost(new Date(), ((User) table.get(0)).getUID(), ((User) user.get(0)).getUID(), expend) != null) {
                             send("EXP SUCCESS\r\n".getBytes());
                         } else {
                             send("EXP FAIL NOTENOUGH\r\n".getBytes());
