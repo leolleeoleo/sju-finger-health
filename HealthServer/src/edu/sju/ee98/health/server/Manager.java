@@ -8,9 +8,6 @@ import edu.sju.ee98.health.server.finger.FingerModule;
 import edu.sju.ee98.health.server.finger.SerialFinger;
 import edu.sju.ee98.health.sql.SQL;
 import edu.sju.ee98.health.server.station.ServerNio;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -27,7 +24,7 @@ public class Manager {
     private Manager() {
         Manager.server = new ServerNio();
         Manager.command = new Command();
-        Manager.sql = new SQL("163.21.76.50", "health_test", "finger", "health");
+        Manager.sql = new SQL("127.0.0.1", "health_test", "finger", "health");
         Manager.module = SerialFinger.scan();
     }
 

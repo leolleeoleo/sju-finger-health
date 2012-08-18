@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.sju.ee98.health.server.finger;
+
 
 import edu.sju.ee98.fingerprint.ACKException;
 import edu.sju.ee98.fingerprint.tfsmodule.TFSCharacterize;
