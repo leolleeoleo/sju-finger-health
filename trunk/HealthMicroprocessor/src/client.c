@@ -70,6 +70,7 @@ unsigned char PROTOCOL_action(unsigned char initial) {
                     CLIENT_count++;
                 }
                 if (receive[i] == 'F' && receive[i + 1] == 'A' && receive[i + 2] == 'I') {
+                    GPRS_close();
                     return 2;
                 }
             }
