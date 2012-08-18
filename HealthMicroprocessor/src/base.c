@@ -43,3 +43,18 @@ unsigned char * dec_ascii(unsigned char dec) {
     return dec_string;
 }
 
+unsigned char find_string(unsigned char *srt, unsigned char *pattan, unsigned char slength, unsigned char plength) {
+    unsigned char i, j, k;
+    for (i = 0; i < slength - plength; i++) {
+        k = 0;
+        for (j = 0; j < plength; j++) {
+            if (pattan[j] == srt[i + j]) {
+                k++;
+            }
+        }
+        if (k == plength) {
+            return i;
+        }
+    }
+    return 0xFF;
+}

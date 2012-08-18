@@ -2,7 +2,7 @@
  * File:   interrupt.h
  * Author: MA780G
  *
- * Created on 2011年12月30日, 下午 2:38
+ * Created on 2011�?2??0?? �?? 2:38
  */
 
 #ifndef __INTERRUPT_H
@@ -10,9 +10,9 @@
 
 extern void INT_initial();
 
-extern unsigned char INT_X1_check(); 
+extern unsigned char INT_X1_check();
 extern void INT_X1_clean();
-							
+
 extern void INT_T0_initial();
 extern unsigned char INT_T0_check();
 extern void INT_T0_clean();

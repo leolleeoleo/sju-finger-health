@@ -6,7 +6,8 @@
 
 #ifndef __RA8806_H
 #define	__RA8806_H
-	
+
+extern bit RA8806_interrupt();
 extern void RA8806_reset();
 extern void RA8806_writeCmd(unsigned char);
 extern void RA8806_writeData(unsigned char);

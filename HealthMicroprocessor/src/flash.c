@@ -419,7 +419,7 @@ unsigned char FLASH_startup(unsigned char initial) {
             LCD_PositionString(0x0D, 0x70, "聖約翰科技大學");
             break;
     }
-    if (FLASH_finger_count > 500) {
+    if (FLASH_finger_count > 250) {
         return 1;
     }
     return 0;
@@ -431,7 +431,7 @@ void FLASH_finger(unsigned char initial) {
         LCD_ModeSelection(LCD_ModeSelection_OR);
         LCD_AccessSelection(LCD_AccessSelection_DDRAM1); //存取DDRAM1
         LCD_Display(0x00);
-        LCD_PositionGraphic(0x08, 0x80, image_square);
+        LCD_PositionGraphic(0x06, 0x80, image_square);
         LCD_PositionString(0x0C, 0x30, "請感應指紋");
         LCD_PositionString(0x1C, 0xD0, "返回");
         LCD_AccessSelection(LCD_DisplaySelection_DDRAM2); //存取DDRAM2
@@ -443,21 +443,33 @@ void FLASH_finger(unsigned char initial) {
             LCD_Display(0x00);
             LCD_PositionGraphic(0x1A, 0x86, image_finger);
             break;
-        case 20:
+        case 14:
+            LCD_Display(0x00);
+            LCD_PositionGraphic(0x16, 0x86, image_finger);
+            break;
+        case 18:
             LCD_Display(0x00);
             LCD_PositionGraphic(0x12, 0x86, image_finger);
             break;
+        case 22:
+            LCD_Display(0x00);
+            LCD_PositionGraphic(0x0E, 0x86, image_finger);
+            break;
+        case 26:
+            LCD_Display(0x00);
+            LCD_PositionGraphic(0x0A, 0x86, image_finger);
+            break;
         case 30:
             LCD_Display(0x00);
-            LCD_PositionGraphic(0x08, 0x86, image_finger);
+            LCD_PositionGraphic(0x06, 0x86, image_finger);
             break;
         case 40:
             LCD_Display(0x00);
-            LCD_PositionGraphic(0x08, 0x86, image_finger2);
+            LCD_PositionGraphic(0x06, 0x86, image_finger2);
             break;
         case 50:
             LCD_Display(0x00);
-            LCD_PositionGraphic(0x08, 0x86, image_finger);
+            LCD_PositionGraphic(0x06, 0x86, image_finger);
             break;
     }
     if (FLASH_finger_count > 60) {
