@@ -22,6 +22,7 @@ extern unsigned int hex_ascii_string(unsigned char);
 extern unsigned char ascii_hex(unsigned char);
 extern unsigned char ascii_hex_string(unsigned int);
 extern unsigned char * dec_ascii(unsigned char dec);
+extern unsigned char find_string(unsigned char *, unsigned char *, unsigned char, unsigned char);
 
 #endif	/* BASE_H */
 

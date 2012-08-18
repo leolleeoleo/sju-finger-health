@@ -335,7 +335,7 @@
             <IDataBaseAddress></IDataBaseAddress>
             <Precede></Precede>
             <Stack></Stack>
-            <CodeSegmentName>?CO?CONFIG(0xFF00), ?PR?_IAP_ProgramUserCode?IAP(0xFF80), ?PR?_IAP_EraseSector?IAP</CodeSegmentName>
+            <CodeSegmentName>?CO?CONFIGURATION(0xFF00), ?PR?_IAP_ProgramUserCode?IAP(0xFF80), ?PR?_IAP_EraseSector?IAP</CodeSegmentName>
             <XDataSegmentName></XDataSegmentName>
             <BitSegmentName></BitSegmentName>
             <DataSegmentName></DataSegmentName>
@@ -373,9 +373,9 @@
               <FilePath>.\src\iap.asm</FilePath>
             </File>
             <File>
-              <FileName>config.c</FileName>
+              <FileName>configuration.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\src\config.c</FilePath>
+              <FilePath>.\src\configuration.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -421,6 +421,11 @@
               <FileName>state.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\src\state.c</FilePath>
+            </File>
+            <File>
+              <FileName>configure.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\configure.c</FilePath>
             </File>
           </Files>
         </Group>

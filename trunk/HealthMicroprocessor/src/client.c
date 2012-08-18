@@ -1,101 +1,80 @@
 #include <stdio.h>
-#include "sim300.h"
+#include "base.h"
+#include "gprs.h"
 #include "uart.h"
-#include "config.h"
 #include "tfs_m51.h"
+#include "configuration.h"
 
-//code unsigned char acc[] = "register1\r\n";
-//code unsigned char pass[] = "00000000\r\n";
+#define STATE_config_type_account 0x00
+#define STATE_config_type_password 0x01
+#define STATE_config_type_server 0x02
+
 code unsigned char regis[] = "REGISTER";
-//code unsigned char fin[] = "aaaaaaaaaAAAAAAAAAABBBBBBBBBBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaa\r\n";
 
 xdata unsigned char CLIENT_NAME[10];
 xdata unsigned char CLIENT_POINT[10];
 
 idata unsigned char CLIENT_count;
 
+void CLIENT_connect() {
+    GPRS_connect(CONFIGURATION_get(STATE_config_type_server), "1201");
+}
+
+void CLIENT_login() {
+    GPRS_send(33);
+    delay_ms(200);
+    GPRS_write("LOGIN", 5);
+    GPRS_write(":", 1);
+    GPRS_write(CONFIGURATION_get(STATE_config_type_account), 12);
+    GPRS_write(":", 1);
+    GPRS_write(CONFIGURATION_get(STATE_config_type_password), 12);
+    GPRS_write("\r\n", 2);
+}
+
+void CLIENT_register(unsigned char *finger) {
+    GPRS_send(211);
+    delay_ms(200);
+    GPRS_write("REG", 3);
+    GPRS_write(":", 1);
+    GPRS_write(finger, 207);
+}
+
 unsigned char PROTOCOL_action(unsigned char initial) {
     unsigned char i;
     unsigned char j;
-    unsigned char *receive = GPRS_getReceive();
-
+    unsigned char *receive = GPRS_getData();
     if (initial) {
         CLIENT_count = 0;
-        GPRS_connect(1);
+        CLIENT_connect();
     }
     switch (CLIENT_count) {
         case 0:
-            if (GPRS_connect(0)) {
-                CLIENT_count++;
+            for (i = 0; i < 50; i++) {
+                if (receive[i] == 'T' && receive[i + 1] == 'E' && receive[i + 2] == 'D') {
+                    CLIENT_login();
+                    CLIENT_count++;
+                }
             }
             break;
         case 1:
             for (i = 0; i < 50; i++) {
-                if (receive[i] == 'A' && receive[i + 1] == 'C' && receive[i + 2] == 'C') {
-                    CONFIG_read();
-                    GPRS_send(1, CONFIG_getAccount(), 12);
+                if (receive[i] == 'S' && receive[i + 1] == 'U' && receive[i + 2] == 'C') {
+                    CLIENT_register(getCharacterize());
                     CLIENT_count++;
                 }
             }
             break;
         case 2:
-            //傳送帳號
-            if (GPRS_send(0, CONFIG_getAccount(), 12)) {
-                CLIENT_count++;
-            }
-            break;
-        case 3:
-            for (i = 0; i < 50; i++) {
-                if (receive[i] == 'P' && receive[i + 1] == 'A' && receive[i + 2] == 'S') {
-                    CONFIG_read();
-                    GPRS_send(1, CONFIG_getPassword(), 12);
-                    CLIENT_count++;
-                }
-            }
-            break;
-        case 4:
-            //傳送密碼
-            if (GPRS_send(0, CONFIG_getPassword(), 12)) {
-                CLIENT_count++;
-            }
-            break;
-        case 5:
-            for (i = 0; i < 50; i++) {
-                if (receive[i] == 'L' && receive[i + 1] == 'O' && receive[i + 2] == 'G') {
-                    GPRS_send(1, regis, 8);
-                    CLIENT_count++;
-                }
-            }
-            break;
-        case 6:
-            if (GPRS_send(0, regis, 8)) {
-                CLIENT_count++;
-            }
-            break;
-        case 7:
-            for (i = 0; i < 50; i++) {
-                if (receive[i] == 'R' && receive[i + 1] == 'E' && receive[i + 2] == 'G') {
-                    GPRS_send(1, getCharacterize(), 207);
-                    CLIENT_count++;
-                }
-            }
-            break;
-        case 8:
-            if (GPRS_send(0, getCharacterize(), 207)) {
-                CLIENT_count++;
-            }
-            break;
-        case 9:
             for (i = 0; i < 50; i++) {
                 if (receive[i] == 'S' && receive[i + 1] == 'U' && receive[i + 2] == 'C') {
                     CLIENT_count++;
                 }
-                if (receive[i] == 'C' && receive[i + 1] == 'L' && receive[i + 2] == 'O') {
+                if (receive[i] == 'F' && receive[i + 1] == 'A' && receive[i + 2] == 'I') {
                     return 2;
                 }
             }
             break;
-        case 10:
+        case 3:
             do {
                 if (++i > 48) {
                     i = 0;
@@ -123,6 +102,10 @@ unsigned char PROTOCOL_action(unsigned char initial) {
 
             //關閉連線
             GPRS_close();
+            CLIENT_count++;
+            return 1;
+            break;
+        case 4:
             return 1;
             break;
     }

@@ -4,11 +4,10 @@
 #include "interrupt.h"
 #include "lcd.h"
 #include "flash.h"
-#include "sim300.h"
 #include "state.h"
 
 main() {
-    delay_ms(5000);
+    delay_ms(1000);
     UART_initial(19200);
     printf("UART initial\r\n");
     delay_ms(1000);
@@ -22,13 +21,11 @@ main() {
     LCD_initial();
     printf("LCD initial\r\n");
     delay_ms(1000);
-
     state_initial();
     printf("STATE initial\r\n");
-
     while (1) {
-        if (INT_X1_check()) {
-            LCD_interrupt();
+        if (LCD_interrupt()) {
+            //            LCD_interrupt();
             if (LCD_TPcheck()) {
                 state_down(LCD_getX(), LCD_getY());
                 LCD_interruptWait();
@@ -39,7 +36,6 @@ main() {
             INT_X1_clean();
         }
         if (INT_T0_check()) {
-            INT_T0_clean();
             state_up(1);
         }
     }

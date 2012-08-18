@@ -2,16 +2,23 @@
 #include "ra8806.h"
 
 //pin config
-sbit RA_CS = P2^3;
 sbit RA_RS = P2^0;
 sbit RA_WR = P2^1;
 sbit RA_RD = P2^2;
+sbit RA_CS = P2^3;
 sbit RA_BUSY = P2^4;
-sbit RA_RST = P2^5;
-sbit RA_INT = P3^3;
+sbit RA_INT = P2^5;
+sbit RA_RST = P2^6;
+sbit INT_PWM = P2^7;
 #define RA_BUS P0
 
+bit RA8806_interrupt() {
+    RA_INT = 1;
+    return !RA_INT;
+}
+
 void RA8806_reset() {
+    INT_PWM = 1;
     RA_CS = 0;
     RA_RD = 1;
     RA_RST = 0;
@@ -20,6 +27,7 @@ void RA8806_reset() {
     delay_ms(5);
     RA_CS = 1;
     delay_ms(100);
+    INT_PWM = 0;
 }
 
 void RA8806_writeCmd(unsigned char d) {

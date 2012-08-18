@@ -5,16 +5,13 @@ void KEYBOARD_show() {
     LCD_ModeSelection(LCD_ModeSelection_OR);
     LCD_AccessSelection(LCD_DisplaySelection_DDRAM2);
     LCD_Display(0x00);
-    LCD_BoldFont(0);
-    LCD_Inverse(0);
-    LCD_ReversedData(0);
+    LCD_setDefault();
     LCD_FontSize(1, 1);
     LCD_PositionString(0x00, 0x50, "¢°¢±¢²¢³¢´¢µ¢¶¢·¢¸¢¯");
     LCD_PositionString(0x00, 0x70, "¢ß¢å¢Ó¢à¢â¢ç¢ã¢×¢Ý¢Þ");
     LCD_PositionString(0x02, 0x90, "¢Ï¢á¢Ò¢Ô¢Õ¢Ö¢Ø¢Ù¢Ú");
     LCD_PositionString(0x04, 0xB0, "¢è¢æ¢Ñ¢ä¢Ð¢Ü¢Û¡DBS");
     LCD_PositionString(0x10, 0xD0, "¡ö¡÷");
-
     LCD_AccessSelection(LCD_DisplaySelection_DDRAM1);
 }
 

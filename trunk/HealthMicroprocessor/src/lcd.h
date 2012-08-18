@@ -9,8 +9,8 @@
 
 
 //REG [00h] Whole Chip LCD Controller Register (WLCR)***************************								
-extern void LCD_TextMode(unsigned char);		
-extern void LCD_Inverse(unsigned char);		  
+extern void LCD_TextMode(unsigned char);
+extern void LCD_Inverse(unsigned char);
 
 //REG [01h] Misc. Register (MISC)***********************************************
 extern void LCD_NoFlicker(unsigned char);
@@ -74,17 +74,20 @@ extern void LCD_FontSize(unsigned char, unsigned char);
 
 extern void LCD_CursorPosition(unsigned char, unsigned char);
 extern void LCD_Display(unsigned char);
-																				 
-extern void LCD_PositionString(unsigned char,unsigned char,unsigned char *);
+
+extern void LCD_PositionString(unsigned char, unsigned char, unsigned char *);
 extern void LCD_PositionGraphic(unsigned char, unsigned char, unsigned char *);
 
-extern void LCD_interrupt();
+extern bit LCD_interrupt();
 extern void LCD_interruptWait();
 extern void LCD_TPclean();
 extern unsigned char LCD_TPcheck();
 extern unsigned int LCD_getX();
 extern unsigned int LCD_getY();
 
+//====================
+extern void LCD_cleanAll();
+extern void LCD_setDefault();
 //====================
 extern void LCD_initial();
 

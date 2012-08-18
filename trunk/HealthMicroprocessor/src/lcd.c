@@ -285,12 +285,16 @@ void LCD_PositionGraphic(unsigned char x, unsigned char y, unsigned char *graphi
 
 idata unsigned int LCD_x, LCD_y;
 
-void LCD_interrupt() {
-    unsigned char state = RA8806_read(0x0F);
-    if (state & 0x01) {
-        LCD_x = LCD_TouchPanelX();
-        LCD_y = LCD_TouchPanelY();
+bit LCD_interrupt() {
+    if (RA8806_interrupt()) {
+        unsigned char state = RA8806_read(0x0F);
+        if (state & 0x01) {
+            LCD_x = LCD_TouchPanelX();
+            LCD_y = LCD_TouchPanelY();
+        }
+        return 1;
     }
+    return 0;
 }
 
 void LCD_interruptWait() {
@@ -315,6 +319,25 @@ unsigned int LCD_getX() {
 
 unsigned int LCD_getY() {
     return (0x03A0 - LCD_y) * 0.29;
+}
+
+//===========================================
+
+void LCD_cleanAll() {
+    LCD_AccessSelection(LCD_AccessSelection_DDRAM1); //存取DDRAM1
+    LCD_Display(0x00);
+    LCD_AccessSelection(LCD_DisplaySelection_DDRAM2); //存取DDRAM2
+    LCD_Display(0x00);
+}
+
+void LCD_setDefault() {
+    LCD_CursorBlinking(1);
+    LCD_CursorDisplay(0);
+    LCD_BoldFont(0);
+    LCD_Inverse(0);
+    LCD_ReversedData(0);
+    LCD_FontSize(0, 0);
+
 }
 
 ///////////////////////////////////////////
@@ -345,10 +368,6 @@ void LCD_initial() {
     RA8806_write(RA8806_PNTR, 0x00);
     RA8806_write(RA8806_FNCR, 0x00);
     RA8806_write(RA8806_FVHT, 0x00);
-
-    LCD_AccessSelection(LCD_AccessSelection_DDRAM1); //存取DDRAM1
-    LCD_Display(0x00);
-    LCD_AccessSelection(LCD_DisplaySelection_DDRAM2); //存取DDRAM2
-    LCD_Display(0x00);
+    LCD_cleanAll();
 }
 
