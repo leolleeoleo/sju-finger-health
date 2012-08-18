@@ -225,7 +225,7 @@
       <Focus>0</Focus>
       <ColumnNumber>17</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>3</TopLine>
+      <TopLine>11</TopLine>
       <CurrentLine>39</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\src\main.c</PathWithFileName>
@@ -251,10 +251,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>95</ColumnNumber>
+      <ColumnNumber>65</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
       <TopLine>1</TopLine>
-      <CurrentLine>8</CurrentLine>
+      <CurrentLine>13</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\src\configuration.c</PathWithFileName>
       <FilenameWithoutPath>configuration.c</FilenameWithoutPath>
@@ -302,7 +302,7 @@
       <Focus>0</Focus>
       <ColumnNumber>13</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>1</TopLine>
+      <TopLine>2</TopLine>
       <CurrentLine>30</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\src\ra8806.c</PathWithFileName>
@@ -465,9 +465,9 @@
   </Group>
 
   <AlienFiles>
-    <PathWithFilename>C:\NetBeansProject\FingerHealth\HealthMicroprocessor\src\gprs.h</PathWithFilename>
-    <TopLine>1</TopLine>
-    <CurrentLine>7</CurrentLine>
+    <PathWithFilename>C:\NetBeansProject\FingerHealth\HealthMicroprocessor\src\lcd.h</PathWithFilename>
+    <TopLine>54</TopLine>
+    <CurrentLine>81</CurrentLine>
     <Constant>0</Constant>
     <WindowPosition>
       <length>0</length>
@@ -517,9 +517,9 @@
   </AlienFiles>
 
   <AlienFiles>
-    <PathWithFilename>C:\NetBeansProject\FingerHealth\HealthMicroprocessor\src\lcd.h</PathWithFilename>
-    <TopLine>54</TopLine>
-    <CurrentLine>81</CurrentLine>
+    <PathWithFilename>C:\NetBeansProject\FingerHealth\HealthMicroprocessor\src\gprs.h</PathWithFilename>
+    <TopLine>1</TopLine>
+    <CurrentLine>7</CurrentLine>
     <Constant>0</Constant>
     <WindowPosition>
       <length>0</length>
@@ -558,7 +558,7 @@
         <Doc>
           <Name>.\src\main.c</Name>
           <ColumnNumber>17</ColumnNumber>
-          <TopLine>3</TopLine>
+          <TopLine>11</TopLine>
           <CurrentLine>39</CurrentLine>
         </Doc>
         <Doc>
@@ -588,7 +588,7 @@
         <Doc>
           <Name>.\src\ra8806.c</Name>
           <ColumnNumber>13</ColumnNumber>
-          <TopLine>1</TopLine>
+          <TopLine>2</TopLine>
           <CurrentLine>30</CurrentLine>
         </Doc>
         <Doc>
@@ -617,9 +617,9 @@
         </Doc>
         <Doc>
           <Name>.\src\configuration.c</Name>
-          <ColumnNumber>95</ColumnNumber>
+          <ColumnNumber>65</ColumnNumber>
           <TopLine>1</TopLine>
-          <CurrentLine>8</CurrentLine>
+          <CurrentLine>13</CurrentLine>
         </Doc>
       </Documents>
     </MDIGroup>
