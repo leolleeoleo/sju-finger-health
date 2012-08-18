@@ -24,40 +24,11 @@ public class SQL extends SQLConnector {
         //"127.0.0.1:3306/authtest02", "authser", "authpasswd"
     }
 
-    public static void main(String[] args) {
-        SQL sql = new SQL("127.0.0.1", "health_test", "root", "sql");
-        //        User user = sql.logInUser(TestSQL.c.getBytes());
-        //        User user = sql.logInUser(TestSQL.c.getBytes());
-
-    }
-//Test Code+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-    public void test_User() {
-//        this.createTable(new User());
-        User u = new User();
-        u.setUID("123456789");
-        u.setACCOUNT("98405067");
-        u.setPASSWORD("98405067");
-//        u.setGROUP("group");
-        u.setLAST_NAME("Chang");
-        u.setFIRST_NAME("zin shang");
-//        u.setBIRTHDAY(Date.valueOf("2010-03-23"));
-        u.setADDRESS("dfgsdgsdgsdgsdhsdh");
-        u.setEmail("dsdgsdg");
-        u.setPHONE("43543453");
-        u.setPOINTS(1231);
-////        
-//        this.insert(u);
-//                
-//          this.select(u, u.objectACCOUNT(), u.objectPASSWORD());   
-//        this.select(u, u.objectUID());        
-//        
-//        u.print();
-//        
-//        System.out.println(u.getUID());
-//        System.out.println(u.getACCOUNT());
-    }
-
+//    public static void main(String[] args) {
+//        SQL sql = new SQL("127.0.0.1", "health_test", "root", "sql");
+    //        User user = sql.logInUser(TestSQL.c.getBytes());
+    //        User user = sql.logInUser(TestSQL.c.getBytes());
+//    }
     public void test_Group() {
         try {
             //        this.createTable(new Group());
@@ -181,7 +152,7 @@ public class SQL extends SQLConnector {
      * @param phone 電話
      * @return 使用者資料
      */
-    public User createUser(String uid, String account, String password, int group, String last_name,
+    public ArrayList<Table> createUser(String uid, String account, String password, int group, String last_name,
             String fist_name, Date birthday, String address, String email, String phone) {
         User user = new User(uid, account, password, group, last_name, fist_name, birthday, address, email, phone, 0);
         try {
@@ -189,7 +160,7 @@ public class SQL extends SQLConnector {
         } catch (SQLException ex) {
             Logger.getLogger(SQL.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return (User) this.select(user, user.objectUID()).get(0);
+        return this.select(user, user.objectUID());
     }
 
     /**
@@ -218,12 +189,8 @@ public class SQL extends SQLConnector {
      * @param user 被刪除的使用者
      * @throws Exception
      */
-    public void deleteUser(User root, User user) throws Exception {
-        if (root.getGROUP() < 500) {
-            this.delete(user);
-        } else {
-            throw new Exception("no permission");
-        }
+    public void deleteUser(User user) throws SQLException {
+        this.delete(user);
     }
 
     /**
@@ -243,8 +210,12 @@ public class SQL extends SQLConnector {
     public ArrayList<Table> logInUser(byte[] fingerprint) {
         Fingerprint f = new Fingerprint();
         f.setFINGERPRINT(fingerprint);
-        f = (Fingerprint) this.select(f, Arrays.copyOfRange(f.sqlObject, 1, 196)).get(0);
-        return this.select(new User(), f.objectUID());
+        ArrayList<Table> select = this.select(f, Arrays.copyOfRange(f.sqlObject, 1, 196));
+        if (select.size() > 0) {
+            f = (Fingerprint) select.get(0);
+            return this.select(new User(), f.objectUID());
+        }
+        return select;
     }
 
     public ArrayList<Table> logInRegister(String account, String password) {
@@ -263,7 +234,6 @@ public class SQL extends SQLConnector {
      * @return
      */
     public Group createGroup(int gid, String name) {
-
         Group group = new Group(gid, name);
         try {
             this.insert(group);
@@ -287,14 +257,10 @@ public class SQL extends SQLConnector {
 
     /**
      *
-     * @param group 刪除全組
-     * @return
+     * @param group 刪除群組
      */
-    public void deleteGroup(User root, Group group) throws Exception {
-        if (root.getGROUP() < 500) {
-            this.delete(group);
-        }
-        throw new Exception("no permission");
+    public void deleteGroup(Group group) throws SQLException {
+        this.delete(group);
     }
 
 //Table Register++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -307,14 +273,10 @@ public class SQL extends SQLConnector {
      * @param name 名稱
      * @return
      */
-    public Register createRegister(int rid, String account, String password, String region, String name) {
+    public ArrayList<Table> createRegister(int rid, String account, String password, String region, String name) throws SQLException {
         Register register = new Register(rid, account, password, region, name);
-        try {
-            this.insert(register);
-        } catch (SQLException ex) {
-            Logger.getLogger(SQL.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return (Register) this.select(register, register.objectRID()).get(0);
+        this.insert(register);
+        return this.select(register, register.objectRID());
     }
 
     /**
@@ -338,18 +300,14 @@ public class SQL extends SQLConnector {
      * @param table 刪除登錄站
      * @return
      */
-    public void deleteRegister(User root, Register register) throws Exception {
-        if (root.getGROUP() < 500) {
-            this.delete(register);
-        }
-        throw new Exception("no permission");
+    public void deleteRegister(User root, Register register) throws SQLException {
+        this.delete(register);
     }
 
 //Table Miles+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     /**
      * 建立里程
      *
-     * @param root 管理員
      * @param register_a 登錄站A
      * @param register_b 登錄站B
      * @param meter 公尺
@@ -383,14 +341,11 @@ public class SQL extends SQLConnector {
      *
      * @param table 里程
      */
-    public void deleteMiles(User root, Miles miles) throws Exception {
-        if (root.getGROUP() < 500) {
-            this.delete(miles);
-        }
-        throw new Exception("no permission");
+    public void deleteMiles(User root, Miles miles) throws SQLException {
+        this.delete(miles);
     }
-//Table Record++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+//Table Record++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     /**
      * 建立紀錄
      *
@@ -414,25 +369,23 @@ public class SQL extends SQLConnector {
     /**
      * 修改紀錄
      *
-     * @param table 紀錄
+     * @param record
      * @param user 使用者
      * @param register 登錄站
      * @return
      */
-    public Record modifyRecord(User root, Record record, int user, int register) {
+    public Record modifyRecord(Record record, int user, int register) {
         return null;
     }
 
     /**
      * 刪除紀錄
      *
-     * @param table
+     * @param record
+     * @throws SQLException
      */
-    public void deleteRecord(User root, Record record) throws Exception {
-        if (root.getGROUP() < 500) {
-            this.delete(record);
-        }
-        throw new Exception("no permission");
+    public void deleteRecord(Record record) throws SQLException {
+        this.delete(record);
     }
 
 //Table Cost+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -446,7 +399,7 @@ public class SQL extends SQLConnector {
      * @param points 點數
      * @return
      */
-    public Cost createCost(User root, java.util.Date time, String store, String user, int points) {
+    public Cost createCost(java.util.Date time, String store, String user, int points) {
         User u = new User();
         u.setUID(user);
         int point = this.plusPoints(u) - this.costPoints(u);
@@ -454,7 +407,6 @@ public class SQL extends SQLConnector {
             Logger.getLogger(SQL.class.getName()).log(Level.WARNING, "point=" + point + ",need=" + points, "not enough");
             return null;
         }
-
         Cost cost = new Cost(time, store, user, points);
         try {
             this.insert(cost);
@@ -480,13 +432,11 @@ public class SQL extends SQLConnector {
     /**
      * 刪除消費
      *
-     * @param table 消費
+     * @param cost
+     * @throws SQLException
      */
-    public void deleteCost(User root, Cost cost) throws Exception {
-        if (root.getGROUP() < 500) {
-            this.delete(cost);
-        }
-        throw new Exception("no permission");
+    public void deleteCost(Cost cost) throws SQLException {
+        this.delete(cost);
     }
 
 //Table finger+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -569,7 +519,7 @@ public class SQL extends SQLConnector {
             mile.setREGISTER_A(reg_a);
             mile.setREGISTER_B(reg_b);
             ArrayList list = this.select(mile, mile.objectREGISTER_A(), mile.objectREGISTER_B());
-            if (list.size() == 0) {
+            if (list.isEmpty()) {
                 mile.setREGISTER_A(reg_b);
                 mile.setREGISTER_B(reg_a);
                 list = this.select(mile, mile.objectREGISTER_A(), mile.objectREGISTER_B());
