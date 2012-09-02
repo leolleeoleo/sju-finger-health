@@ -224,6 +224,10 @@ public class SQL extends SQLConnector {
         r.setPASSWORD(password);
         return this.select(r, r.objectACCOUNT(), r.objectPASSWORD());
     }
+    
+    public ArrayList<Table> listUser() {
+        return this.select(new User());
+    }
 
 //Table Group+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     /**
