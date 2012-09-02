@@ -19,7 +19,7 @@ public class Manager {
 
     public static SQL SQL() {
         if (sql == null) {
-            sql = new SQL("163.21.76.50", "health_test", "finger", "health");
+            sql = new SQL("127.0.0.1", "health_test", "finger", "health");
         }
         return sql;
     }

@@ -6,14 +6,15 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<link href="./css/base.css" rel="stylesheet" type="text/css" />
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>首頁</title>
+        <link href="./css/base.css" rel="stylesheet" type="text/css" />
     </head>
 
     <body class="ColFixLtHdr">
+        <jsp:useBean id="user" class="edu.sju.ee98.health.web.beans.UserBean" scope="session"/>
 
         <div id="container">
             <div id="header">
@@ -21,9 +22,9 @@
             </div>
             <%@ include file="menu.html" %>
             <%@ include file="member.html" %>
+            <%if (user.getUser().getGROUP() == 1) {%><%@ include file="manager.html" %><% }%>
             <div id="mainContent">
 
-                <jsp:useBean id="user" class="edu.sju.ee98.health.web.beans.UserBean" scope="session"/>
                 <h1>你好<jsp:getProperty name="user" property="name"/></h1>
                 <p></p>
                 <h2></h2>
