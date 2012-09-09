@@ -224,7 +224,7 @@ public class SQL extends SQLConnector {
         r.setPASSWORD(password);
         return this.select(r, r.objectACCOUNT(), r.objectPASSWORD());
     }
-    
+
     public ArrayList<Table> listUser() {
         return this.select(new User());
     }
@@ -308,6 +308,14 @@ public class SQL extends SQLConnector {
         this.delete(register);
     }
 
+    /**
+     * 
+     * @return
+     */
+    public ArrayList<Table> listRegister() {
+        return this.select(new Register());
+    }
+
 //Table Miles+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     /**
      * 建立里程
@@ -347,6 +355,14 @@ public class SQL extends SQLConnector {
      */
     public void deleteMiles(User root, Miles miles) throws SQLException {
         this.delete(miles);
+    }
+
+    /**
+     * 
+     * @return
+     */
+    public ArrayList<Table> listMiles() {
+        return this.select(new Miles());
     }
 
 //Table Record++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -390,6 +406,14 @@ public class SQL extends SQLConnector {
      */
     public void deleteRecord(Record record) throws SQLException {
         this.delete(record);
+    }
+
+    /**
+     * 
+     * @return
+     */
+    public ArrayList<Table> listRecord() {
+        return this.select(new Record());
     }
 
 //Table Cost+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -441,6 +465,14 @@ public class SQL extends SQLConnector {
      */
     public void deleteCost(Cost cost) throws SQLException {
         this.delete(cost);
+    }
+
+    /**
+     * 
+     * @return
+     */
+    public ArrayList<Table> listCost() {
+        return this.select(new Cost());
     }
 
 //Table finger+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
