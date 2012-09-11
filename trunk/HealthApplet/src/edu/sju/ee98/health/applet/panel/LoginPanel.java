@@ -50,6 +50,14 @@ public class LoginPanel extends JPanel {
 
     }
 
+    public void setAccount(String account) {
+        this.account.setText(account);
+    }
+
+    public void setPassword(String password) {
+        this.password.setText(password);
+    }
+
     public String getAccount() {
         return account.getText();
     }

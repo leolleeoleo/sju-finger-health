@@ -17,13 +17,18 @@ public class Main extends JApplet {
      * Initialization method that will be called after the applet is loaded
      * into the browser.
      */
+    @Override
     public void init() {
+        String parameter = this.getParameter("account");
+        System.out.println(parameter);
         this.setLayout(null);
         this.setSize(600, 600);
-        this.add(new LoginPanel());
-//        this.add(new Characterize());
-//        this.add(new Create());
-//        this.add(new Cost());
+        LoginPanel loginPanel = new LoginPanel();
+        loginPanel.setAccount(parameter);
+        this.add(loginPanel);
+        //        this.add(new Characterize());
+        //        this.add(new Create());
+        //        this.add(new Cost());
         
     }
     // TODO overwrite start(), stop() and destroy() methods
