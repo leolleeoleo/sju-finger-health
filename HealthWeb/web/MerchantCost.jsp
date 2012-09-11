@@ -29,7 +29,7 @@
             <div id="mainContent">
                 <jsp:useBean id="user" class="edu.sju.ee98.health.web.beans.UserBean" scope="session"/>
                 <h1>消費扣點</h1>
-                <jsp:plugin type="applet" code="edu.sju.ee98.health.applet.Main" 
+                <jsp:plugin type="applet" code="edu.sju.ee98.health.applet.MerchantCost" 
                             codebase="applet" archive="HealthApplet.jar, jssc.jar, FingerModule.jar" 
                             width="300" height="300">
                     <jsp:params>
