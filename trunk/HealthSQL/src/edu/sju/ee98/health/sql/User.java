@@ -118,8 +118,8 @@ public class User implements Table {
      *
      * @return 密碼
      */
-    public int getPASSWORD() {
-        return (Integer) this.sqlObject[2].getData();
+    public String getPASSWORD() {
+        return (String) this.sqlObject[2].getData();
     }
 
     /**
