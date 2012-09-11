@@ -4,12 +4,9 @@
  */
 package edu.sju.ee98.health.applet;
 
-import edu.sju.ee98.health.applet.device.FingerModule;
-import edu.sju.ee98.health.applet.device.SerialFinger;
-import edu.sju.ee98.health.applet.network.ClientListener;
-import edu.sju.ee98.health.applet.network.ClientNio;
-import edu.sju.ee98.health.applet.panel.CharacterizePanel;
-import edu.sju.ee98.health.applet.panel.LoginPanel;
+import edu.sju.ee98.health.applet.device.*;
+import edu.sju.ee98.health.applet.network.*;
+import edu.sju.ee98.health.applet.panel.*;
 import edu.sju.ee98.fingerprint.FingerCharacterize;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -21,6 +18,7 @@ import java.util.logging.Logger;
 import javax.swing.JApplet;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import jssc.SerialPort;
 import jssc.SerialPortException;
 
@@ -28,30 +26,36 @@ import jssc.SerialPortException;
  *
  * @author Leo
  */
-public class UpdateFingerprint extends JApplet {
+public class MerchantCost extends JApplet {
 
-    public static final String CREATE = "更新指紋";
+    public static final String COST = "消費點數";
     private LoginPanel login;
-    private JButton create;
+    private JButton cost;
     private FingerCharacterize characterize = null;
+    private int point;
 
     /**
      * Initialization method that will be called after the applet is loaded
      * into the browser.
      */
     public void init() {
+        
+        String account = this.getParameter("account");
+        String password = this.getParameter("password");
         this.setLayout(null);
         this.setSize(300, 300);
         this.getContentPane().setBackground(Color.WHITE);
         // TODO start asynchronous download of heavy resources
         this.login = new LoginPanel();
+        this.login.setAccount(account);
+        this.login.setPassword(password);
         this.login.setLocation(50, 50);
         this.add(this.login);
-
-        this.create = new JButton();
-        this.create.setBounds(100, 200, 100, 30);
-        this.create.setText(CREATE);
-        this.create.addActionListener(new ActionListener() {
+        
+        this.cost = new JButton();
+        this.cost.setBounds(100, 200, 100, 30);
+        this.cost.setText(COST);
+        this.cost.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -59,7 +63,7 @@ public class UpdateFingerprint extends JApplet {
                 action.start();
             }
         });
-        this.add(this.create);
+        this.add(this.cost);
 
     }
 
@@ -91,9 +95,7 @@ public class UpdateFingerprint extends JApplet {
                     module.getSerial().openPort();
                     module.getSerial().setParams(SerialPort.BAUDRATE_19200, SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_NONE);
                     try {
-                        this.module.deleteAll();
-                        this.module.addUser((char) 1, (byte) 1);
-                        characterize = this.module.getCharacterize((char) 1);
+                        characterize = this.module.getCharacterize();
                     } catch (IOException ex) {
                     }
                     option.interrupt();
@@ -120,7 +122,8 @@ public class UpdateFingerprint extends JApplet {
                 JOptionPane.showMessageDialog(null, "Get Fingerprint characterize Fail.", "Fingerprint Information", JOptionPane.WARNING_MESSAGE, null);
                 return;
             }
-            ClientNio client = new ClientNio("127.0.0.1", 1201);
+            point = Integer.parseInt(JOptionPane.showInputDialog(null, "Cost point :", "COST", JOptionPane.QUESTION_MESSAGE));
+            ClientNio client = new ClientNio("192.168.1.202", 1201);
             Listener listener = new Listener(client);
             client.addClientListener(listener);
             try {
@@ -135,6 +138,7 @@ public class UpdateFingerprint extends JApplet {
             } catch (IOException ex) {
                 Logger.getLogger(ClientNio.class.getName()).log(Level.SEVERE, null, ex);
             }
+            characterize = null;
         }
     }
 
@@ -155,7 +159,12 @@ public class UpdateFingerprint extends JApplet {
             if (s.equals("CONNECTED")) {
                 buff.put(("LOGIN:" + login.getAccount() + ":" + login.getPassword() + "\r\n").getBytes());
             } else if (s.equals("LOGIN SUCCESS")) {
-                buff.put(("CHA:").getBytes());
+                buff.put(("EXP:").getBytes());
+                buff.put((byte) (point >> 24));
+                buff.put((byte) (point >> 16));
+                buff.put((byte) (point >> 8));
+                buff.put((byte) (point));
+                buff.put((":").getBytes());
                 buff.put(characterize.getCharacterize());
                 buff.put(("\r\n").getBytes());
             } else {
