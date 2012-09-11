@@ -23,9 +23,9 @@
             <div id="header">
                 <h1>健康點點名</h1>
             </div>
-            <%@ include file="menu.html" %>
-            <%@ include file="member.html" %>
-            <%@ include file="manager.html" %>
+            <%@ include file="MenuList.html" %>
+            <%@ include file="MemberList.html" %>
+            <%@ include file="ManagementList.html" %>
             <div id="mainContent">
                 <jsp:useBean id="user" class="edu.sju.ee98.health.web.beans.UserBean" scope="session"/>
                 <h1>紀錄列表</h1>
@@ -41,7 +41,7 @@
                     </tr><%}%>
                 </table>
             </div>
-            <%@ include file="copyright.html" %>
+            <%@ include file="Copyright.html" %>
         </div>
     </body>
 </html>

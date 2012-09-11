@@ -19,8 +19,8 @@
             <div id="header">
                 <h1>健康點點名</h1>
             </div>
-            <%@ include file="menu.html" %>
-            <%@ include file="member.html" %>
+            <%@ include file="MenuList.html" %>
+            <%@ include file="MemberList.html" %>
             <div id="mainContent">
                 <jsp:useBean id="user" class="edu.sju.ee98.health.web.beans.UserBean" scope="session"/>
                 <h1>個人資料</h1>
@@ -31,7 +31,7 @@
                 <p>電子郵件：<jsp:getProperty name="user" property="email"/></p>
                 <p>電話：<jsp:getProperty name="user" property="phone"/></p>
             </div>
-            <%@ include file="copyright.html" %>
+            <%@ include file="Copyright.html" %>
         </div>
     </body>
 </html>

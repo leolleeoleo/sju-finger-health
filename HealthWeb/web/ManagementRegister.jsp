@@ -4,7 +4,7 @@
     Author     : Leo
 --%>
 
-<%@page import="edu.sju.ee98.health.sql.Miles"%>
+<%@page import="edu.sju.ee98.health.sql.Register"%>
 <%@page import="edu.sju.ee98.sql.Table"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="edu.sju.ee98.health.web.Manager"%>
@@ -23,31 +23,31 @@
             <div id="header">
                 <h1>健康點點名</h1>
             </div>
-            <%@ include file="menu.html" %>
-            <%@ include file="member.html" %>
-            <%@ include file="manager.html" %>
+            <%@ include file="MenuList.html" %>
+            <%@ include file="MemberList.html" %>
+            <%@ include file="ManagementList.html" %>
             <div id="mainContent">
                 <jsp:useBean id="user" class="edu.sju.ee98.health.web.beans.UserBean" scope="session"/>
-                <h1>里程列表</h1>
+                <h1>登入站列表</h1>
                 <table id="mainContent">
                     <%
-                        ArrayList<Table> list = Manager.SQL().listMiles();
+                        ArrayList<Table> list = Manager.SQL().listRegister();
                         for (int i = 0; i < list.size(); i++) {
-                            Miles m = (Miles) list.get(i);
+                            Register r = (Register) list.get(i);
                     %><tr>
                         <td><%
-                            out.print(m.getREGISTER_A());
+                            out.print(r.getRID());
                             %></td>
                         <td><%
-                            out.print(m.getREGISTER_B());
+                            out.print(r.getNAME());
                             %></td>
                         <td><%
-                            out.print(m.getMETER());
+                            out.print(r.getREGION());
                             %></td>
                     </tr><%}%>
                 </table>
             </div>
-            <%@ include file="copyright.html" %>
+            <%@ include file="Copyright.html" %>
         </div>
     </body>
 </html>
