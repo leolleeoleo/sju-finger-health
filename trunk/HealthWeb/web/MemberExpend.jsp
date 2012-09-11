@@ -1,6 +1,6 @@
 <%-- 
-    Document   : climb
-    Created on : 2012/6/29, 下午 11:59:24
+    Document   : expend
+    Created on : 2012/6/30, 下午 02:43:50
     Author     : Leo
 --%>
 
@@ -11,7 +11,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>健康點點名</title>
+        <title>首頁</title>
         <link href="./css/base.css" rel="stylesheet" type="text/css" />
     </head>
 
@@ -21,21 +21,21 @@
             <div id="header">
                 <h1>健康點點名</h1>
             </div>
-            <%@ include file="menu.html" %>
-            <%@ include file="member.html" %>
+            <%@ include file="MenuList.html" %>
+            <%@ include file="MemberList.html" %>
             <div id="mainContent">
                 <jsp:useBean id="user" class="edu.sju.ee98.health.web.beans.UserBean" scope="session"/>
-                <h1>登山紀錄</h1>
+                <h1>消費紀錄</h1>
                 <%
-                    ArrayList<String> record = Manager.SQL().selectRecord(user.getUser());
-                    for (int i = 0; i < record.size(); i++) {
+                    ArrayList<String> expend = Manager.SQL().selectExpend(user.getUser());
+                    for (int i = 0; i < expend.size(); i++) {
                 %>
-                <p><%out.print(record.get(i));%></p>
+                <p><%out.print(expend.get(i));%></p>
                 <%
                     }
                 %>
             </div>
-            <%@ include file="copyright.html" %>
+            <%@ include file="Copyright.html" %>
         </div>
     </body>
 </html>

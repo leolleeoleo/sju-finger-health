@@ -1,6 +1,6 @@
 <%-- 
-    Document   : expend
-    Created on : 2012/6/30, 下午 02:43:50
+    Document   : mileage
+    Created on : 2012/6/30, 下午 02:58:26
     Author     : Leo
 --%>
 
@@ -21,21 +21,20 @@
             <div id="header">
                 <h1>健康點點名</h1>
             </div>
-            <%@ include file="menu.html" %>
-            <%@ include file="member.html" %>
+            <%@ include file="MenuList.html" %>
+            <%@ include file="MemberList.html" %>
             <div id="mainContent">
                 <jsp:useBean id="user" class="edu.sju.ee98.health.web.beans.UserBean" scope="session"/>
-                <h1>消費紀錄</h1>
+                <h1>里程統計</h1>
                 <%
-                    ArrayList<String> expend = Manager.SQL().selectExpend(user.getUser());
-                    for (int i = 0; i < expend.size(); i++) {
+                    int total = Manager.SQL().plusPoints(user.getUser());
+                    int expend = Manager.SQL().costPoints(user.getUser());
                 %>
-                <p><%out.print(expend.get(i));%></p>
-                <%
-                    }
-                %>
+                <p>里程總數：<%out.print(total);%></p>
+                <p>里程使用：<%out.print(expend);%></p>
+                <p>里程累計：<%out.print(total - expend);%></p>
             </div>
-            <%@ include file="copyright.html" %>
+            <%@ include file="Copyright.html" %>
         </div>
     </body>
 </html>

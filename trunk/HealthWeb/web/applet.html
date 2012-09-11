@@ -1,0 +1,28 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+        <div>TODO write contents</div>
+        <script src="http://java.com/js/deployJava.js"></script>
+        <script>
+            var attributes = {
+                
+                codebase:   "WEB-INF/lib",
+                code:       "edu.sju.ee98.health.applet.CostApplet",
+                archive:    "HealthApplet.jar, FingerModule.jar, jssc.jar",
+                width:      300,
+                height:     600
+            };
+            var parameters = {jnlp_href:"launch.jnlp"}; <!-- Applet Parameters -->
+            var version = "1.6"; <!-- Required Java Version -->
+            deployJava.runApplet(attributes, parameters, version);
+        </script>
+</body>
+</html>
