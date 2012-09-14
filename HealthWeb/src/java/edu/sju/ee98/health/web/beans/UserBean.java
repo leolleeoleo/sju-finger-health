@@ -62,9 +62,11 @@ public class UserBean implements Serializable {
 
     public boolean login(String account, String password) {
         if (this.user != null) {
+            this.info = "";
             return true;
         }
         if (account == null || password == null) {
+            this.info = "";
             return false;
         } else {
             ArrayList<Table> logInUser = Manager.SQL().logInUser(account, password);
