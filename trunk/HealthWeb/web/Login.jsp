@@ -10,18 +10,19 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-    <link href="./css/base.css" rel="stylesheet" type="text/css" />
+        <link href="./css/base.css" rel="stylesheet" type="text/css" />
     </head>
 
     <body class="ColFixLtHdr">
-
+        <jsp:useBean id="user" class="edu.sju.ee98.health.web.beans.UserBean" scope="session"/>
         <div id="container">
             <div id="header">
                 <h1>健康點點名</h1>
             </div>
             <%@ include file="MenuList.html" %>
             <div id="mainContent">
-                <h1>登入</h1>                
+                <h1>登入</h1>
+                <%=user.getInfo()%>
                 <form method="post" action="S_Member?action=MemberIndex">
                     <p>
                         <label>帳號:
