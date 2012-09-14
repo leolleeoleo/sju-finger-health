@@ -31,7 +31,7 @@ public class FingerPrint {
     }
 
     public FingerCharacterize gerCharacterize() {
-        if (this.module == null) {
+        if (this.module == null && (module = SerialFinger.scan()) == null) {
             JOptionPane.showMessageDialog(null, "Can not connect to the Fingerprint Module!", "Serial Port Error", JOptionPane.ERROR_MESSAGE, null);
             return null;
         }
