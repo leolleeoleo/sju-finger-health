@@ -34,12 +34,14 @@
                         ArrayList<Table> list = Manager.SQL().listCost();
                         for (int i = 0; i < list.size(); i++) {
                             Cost c = (Cost) list.get(i);
-                    %><tr>
+                    %>
+                    <tr>
                         <td><%=c.getTIME()%></td>
                         <td><%=c.getSTORE()%></td>
                         <td><%=c.getUSER()%></td>
                         <td><%=c.getPOINTS()%></td>
-                    </tr><%}%>
+                    </tr>
+                    <%}%>
                 </table>
             </div>
             <%@ include file="Copyright.html" %>

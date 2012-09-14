@@ -34,30 +34,17 @@
                         ArrayList<Table> list = Manager.SQL().listUser();
                         for (int i = 0; i < list.size(); i++) {
                             User u = (User) list.get(i);
-                    %><tr>
-                        <td><%
-                            out.print(u.getUID());
-                            %></td>
-                        <td><%
-                            out.print(u.getGROUP());
-                            %></td>
-                        <td><%
-                            out.print(u.getLAST_NAME());
-                            out.print(u.getFIRST_NAME());
-                            %></td>
-                        <td><%
-                            out.print(u.getBIRTHDAY());
-                            %></td>
-                        <td><%
-                            out.print(u.getADDRESS());
-                            %></td>
-                        <td><%
-                            out.print(u.getEmail());
-                            %></td>
-                        <td><%
-                            out.print(u.getPHONE());
-                            %></td>
-                    </tr><%}%>
+                    %>
+                    <tr>
+                        <td><%=u.getUID()%></td>
+                        <td><%=u.getGROUP()%></td>
+                        <td><%=u.getLAST_NAME() + u.getFIRST_NAME()%></td>
+                        <td><%=u.getBIRTHDAY()%></td>
+                        <td><%=u.getADDRESS()%></td>
+                        <td><%=u.getEmail()%></td>
+                        <td><%=u.getPHONE()%></td>
+                    </tr>
+                    <%}%>
                 </table>
             </div>
             <%@ include file="Copyright.html" %>

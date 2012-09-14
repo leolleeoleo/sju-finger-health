@@ -34,17 +34,13 @@
                         ArrayList<Table> list = Manager.SQL().listRegister();
                         for (int i = 0; i < list.size(); i++) {
                             Register r = (Register) list.get(i);
-                    %><tr>
-                        <td><%
-                            out.print(r.getRID());
-                            %></td>
-                        <td><%
-                            out.print(r.getNAME());
-                            %></td>
-                        <td><%
-                            out.print(r.getREGION());
-                            %></td>
-                    </tr><%}%>
+                    %>
+                    <tr>
+                        <td><%=r.getRID()%></td>
+                        <td><%=r.getNAME()%></td>
+                        <td><%=r.getREGION()%></td>
+                    </tr>
+                    <%}%>
                 </table>
             </div>
             <%@ include file="Copyright.html" %>
