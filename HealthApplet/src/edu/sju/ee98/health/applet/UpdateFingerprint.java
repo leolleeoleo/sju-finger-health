@@ -41,15 +41,15 @@ public class UpdateFingerprint extends JApplet {
      */
     public void init() {
         this.setLayout(null);
-        this.setSize(300, 300);
+        this.setSize(300, 200);
         this.getContentPane().setBackground(Color.WHITE);
         // TODO start asynchronous download of heavy resources
         this.login = new LoginPanel();
-        this.login.setLocation(50, 50);
+        this.login.setLocation(50, 20);
         this.add(this.login);
 
         this.create = new JButton();
-        this.create.setBounds(100, 200, 100, 30);
+        this.create.setBounds(100, 130, 100, 30);
         this.create.setText(CREATE);
         this.create.addActionListener(new ActionListener() {
 
@@ -120,7 +120,7 @@ public class UpdateFingerprint extends JApplet {
                 JOptionPane.showMessageDialog(null, "Get Fingerprint characterize Fail.", "Fingerprint Information", JOptionPane.WARNING_MESSAGE, null);
                 return;
             }
-            ClientNio client = new ClientNio("127.0.0.1", 1201);
+            ClientNio client = new ClientNio("sju.servehttp.com", 1201);
             Listener listener = new Listener(client);
             client.addClientListener(listener);
             try {
