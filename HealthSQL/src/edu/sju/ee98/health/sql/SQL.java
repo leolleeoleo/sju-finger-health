@@ -229,6 +229,16 @@ public class SQL extends SQLConnector {
         return this.select(new User());
     }
 
+    public User getUser(String uid) {
+        User user = new User();
+        user.setUID(uid);
+        ArrayList<Table> select = this.select(user, user.objectUID());
+        if (select.size() > 0) {
+            return (User) select.get(0);
+        }
+        return null;
+    }
+
 //Table Group+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     /**
      * 建立群組
@@ -309,7 +319,7 @@ public class SQL extends SQLConnector {
     }
 
     /**
-     * 
+     *
      * @return
      */
     public ArrayList<Table> listRegister() {
@@ -358,7 +368,7 @@ public class SQL extends SQLConnector {
     }
 
     /**
-     * 
+     *
      * @return
      */
     public ArrayList<Table> listMiles() {
@@ -409,7 +419,7 @@ public class SQL extends SQLConnector {
     }
 
     /**
-     * 
+     *
      * @return
      */
     public ArrayList<Table> listRecord() {
@@ -468,7 +478,7 @@ public class SQL extends SQLConnector {
     }
 
     /**
-     * 
+     *
      * @return
      */
     public ArrayList<Table> listCost() {
@@ -506,6 +516,11 @@ public class SQL extends SQLConnector {
         }
     }
 
+    public ArrayList<Table> listFingerprint() {
+        return this.select(new Fingerprint());
+    }
+
+//Table Record+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     public ArrayList<String> selectRecord(User user) {
         ArrayList<String> result = new ArrayList();
         Record record = new Record();
@@ -522,6 +537,12 @@ public class SQL extends SQLConnector {
             result.add(record.getTIME() + "_" + register.getNAME());
         }
         return result;
+    }
+
+    public ArrayList<Table> selectStoreExpend(User store) {
+        Cost cost = new Cost();
+        cost.setSTORE(store.getUID());
+        return this.select(cost, cost.objectSTORE());
     }
 
     public ArrayList<String> selectExpend(User user) {

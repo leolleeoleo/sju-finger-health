@@ -6,6 +6,8 @@ package edu.sju.ee98.health.sql;
 
 import edu.sju.ee98.sql.Table;
 import edu.sju.ee98.sql.lang.*;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -243,8 +245,8 @@ public class Fingerprint implements Table {
      *
      * @return 身分證號
      */
-    public int getUID() {
-        return (Integer) this.sqlObject[0].getData();
+    public String getUID() {
+        return (String) this.sqlObject[0].getData();
     }
 
     /**
@@ -270,6 +272,26 @@ public class Fingerprint implements Table {
             data[i] = (Byte) this.sqlObject[i + 1].getData();
         }
         return data;
+    }
+
+    public String getMD5() {
+        StringBuilder hexString = new StringBuilder();
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(this.getFINGERPRINT());
+            byte[] digest = md.digest();
+//            byte[] digest = this.getFINGERPRINT();
+            for (int i = 0; i < digest.length; i++) {
+                String hex = Integer.toHexString(0xFF & digest[i]);
+                if (hex.length() == 1) {
+                    hexString.append('0');
+                }
+                hexString.append(hex);
+            }
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(Fingerprint.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return hexString.toString().toUpperCase();
     }
 
     @Override

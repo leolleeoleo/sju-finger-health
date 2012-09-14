@@ -212,6 +212,10 @@ public class User implements Table {
         return this.sqlObject[5];
     }
 
+    public String getNAME() {
+        return this.getLAST_NAME() + this.getFIRST_NAME();
+    }
+
     /**
      * 設定生日
      *
