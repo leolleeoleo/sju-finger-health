@@ -30,9 +30,9 @@
                     int total = Manager.SQL().plusPoints(user.getUser());
                     int expend = Manager.SQL().costPoints(user.getUser());
                 %>
-                <p>里程總數：<%out.print(total);%></p>
-                <p>里程使用：<%out.print(expend);%></p>
-                <p>里程累計：<%out.print(total - expend);%></p>
+                <p>里程總數：<%=total%></p>
+                <p>里程使用：<%=expend%></p>
+                <p>里程累計：<%=total - expend%></p>
             </div>
             <%@ include file="Copyright.html" %>
         </div>

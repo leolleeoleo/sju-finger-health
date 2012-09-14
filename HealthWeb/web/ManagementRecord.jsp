@@ -34,11 +34,13 @@
                         ArrayList<Table> list = Manager.SQL().listRecord();
                         for (int i = 0; i < list.size(); i++) {
                             Record r = (Record) list.get(i);
-                    %><tr>
+                    %>
+                    <tr>
                         <td><%=r.getTIME()%></td>
                         <td><%=r.getUSER()%></td>
                         <td><%=r.getREGISTER()%></td>
-                    </tr><%}%>
+                    </tr>
+                    <%}%>
                 </table>
             </div>
             <%@ include file="Copyright.html" %>

@@ -29,9 +29,9 @@
             <div id="mainContent">
                 <jsp:useBean id="user" class="edu.sju.ee98.health.web.beans.UserBean" scope="session"/>
                 <h1>消費扣點</h1>
-                <jsp:plugin type="applet" code="edu.sju.ee98.health.applet.MerchantCost" 
+                <jsp:plugin type="applet" code="edu.sju.ee98.health.applet.MerchantExp" 
                             codebase="applet" archive="HealthApplet.jar, jssc.jar, FingerModule.jar" 
-                            width="300" height="300">
+                            width="300" height="200">
                     <jsp:params>
                         <jsp:param name="account" value="<%= user.getUser().getACCOUNT()%>" />
                         <jsp:param name="password" value="<%= user.getUser().getPASSWORD()%>" />

@@ -30,10 +30,8 @@
                     ArrayList<String> record = Manager.SQL().selectRecord(user.getUser());
                     for (int i = 0; i < record.size(); i++) {
                 %>
-                <p><%out.print(record.get(i));%></p>
-                <%
-                    }
-                %>
+                <p><%=record.get(i)%></p>
+                <% }%>
             </div>
             <%@ include file="Copyright.html" %>
         </div>

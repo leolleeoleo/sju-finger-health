@@ -30,10 +30,8 @@
                     ArrayList<String> expend = Manager.SQL().selectExpend(user.getUser());
                     for (int i = 0; i < expend.size(); i++) {
                 %>
-                <p><%out.print(expend.get(i));%></p>
-                <%
-                    }
-                %>
+                <p><%=expend.get(i)%></p>
+                <% }%>
             </div>
             <%@ include file="Copyright.html" %>
         </div>

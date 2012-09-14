@@ -34,17 +34,13 @@
                         ArrayList<Table> list = Manager.SQL().listMiles();
                         for (int i = 0; i < list.size(); i++) {
                             Miles m = (Miles) list.get(i);
-                    %><tr>
-                        <td><%
-                            out.print(m.getREGISTER_A());
-                            %></td>
-                        <td><%
-                            out.print(m.getREGISTER_B());
-                            %></td>
-                        <td><%
-                            out.print(m.getMETER());
-                            %></td>
-                    </tr><%}%>
+                    %>
+                    <tr>
+                        <td><%=m.getREGISTER_A()%></td>
+                        <td><%=m.getREGISTER_B()%></td>
+                        <td><%=m.getMETER()%></td>
+                    </tr>
+                    <%}%>
                 </table>
             </div>
             <%@ include file="Copyright.html" %>
