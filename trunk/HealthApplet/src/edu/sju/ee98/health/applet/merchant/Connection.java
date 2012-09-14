@@ -68,7 +68,7 @@ public class Connection extends ClientNio implements ClientListener {
                 Logger.getLogger(UpdateFingerprint.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Error in" + s, "Connection", JOptionPane.WARNING_MESSAGE, null);
+            JOptionPane.showMessageDialog(null, "Error : " + s, "Connection", JOptionPane.WARNING_MESSAGE, null);
             try {
                 buff = null;
                 this.disconnect();
