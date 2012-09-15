@@ -45,7 +45,7 @@ public class UserBean implements Serializable {
     }
 
     public String getBirth() {
-        return new SimpleDateFormat("yyyy/MM/dd").format(this.user.getBIRTHDAY());
+        return new SimpleDateFormat("yyyy-MM-dd").format(this.user.getBIRTHDAY());
     }
 
     public String getAddress() {

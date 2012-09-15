@@ -22,7 +22,7 @@
             <%@ include file="MenuList.html" %>
             <div id="mainContent">
                 <h1>登入</h1>
-                <%=user.getInfo()%>
+                <%=user.getInfo() == null ? "" : user.getInfo()%>
                 <form method="post" action="S_Member?action=MemberIndex">
                     <p>
                         <label>帳號:
