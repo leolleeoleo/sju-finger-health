@@ -30,6 +30,7 @@ public class Member extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("utf-8");
         response.setContentType("text/html;charset=UTF-8");
         /*
          * TODO output your page here. You may use following sample code.
