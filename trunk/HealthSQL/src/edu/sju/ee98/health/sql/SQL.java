@@ -162,7 +162,7 @@ public class SQL extends SQLConnector {
         }
         return this.select(user, user.objectUID());
     }
-    
+
     public ArrayList<Table> updateUser(String uid, String account, String password, int group, String last_name,
             String fist_name, Date birthday, String address, String email, String phone) {
         User user = new User(uid, account, password, group, last_name, fist_name, birthday, address, email, phone, 0);
@@ -499,20 +499,14 @@ public class SQL extends SQLConnector {
     }
 
 //Table finger+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    public Fingerprint createFingerprint(String uid, byte[] fp) {
-        System.out.println(fp.length);
+    public ArrayList<Table> createFingerprint(String uid, byte[] fp) {
         Fingerprint fingerprint = new Fingerprint(uid, fp);
         try {
             this.insert(fingerprint);
         } catch (SQLException ex) {
             Logger.getLogger(SQL.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return (Fingerprint) this.select(fingerprint, fingerprint.objectUID()).get(0);
-    }
-
-    public ArrayList<Table> getFingerprint() {
-        Fingerprint fingerprint = new Fingerprint();
-        return this.select(fingerprint);
+        return this.select(fingerprint, fingerprint.objectUID());
     }
 
     public ArrayList<Table> getFingerprint(String uid) {
@@ -521,9 +515,8 @@ public class SQL extends SQLConnector {
     }
 
     public void deleteFingerprint(String uid) {
-        Fingerprint fingerprint = new Fingerprint(uid);
         try {
-            this.delete(fingerprint);
+            this.delete(new Fingerprint(uid));
         } catch (SQLException ex) {
             Logger.getLogger(SQL.class.getName()).log(Level.SEVERE, null, ex);
         }
