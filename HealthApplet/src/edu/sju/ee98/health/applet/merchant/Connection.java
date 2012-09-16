@@ -5,7 +5,6 @@
 package edu.sju.ee98.health.applet.merchant;
 
 import edu.sju.ee98.fingerprint.FingerCharacterize;
-import edu.sju.ee98.health.applet.UpdateFingerprint;
 import edu.sju.ee98.health.applet.network.ClientListener;
 import edu.sju.ee98.health.applet.network.ClientNio;
 import java.io.IOException;
@@ -65,7 +64,7 @@ public class Connection extends ClientNio implements ClientListener {
                 buff = null;
                 this.disconnect();
             } catch (IOException ex) {
-                Logger.getLogger(UpdateFingerprint.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Connection.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
             JOptionPane.showMessageDialog(null, "Error : " + s, "Connection", JOptionPane.WARNING_MESSAGE, null);
@@ -73,7 +72,7 @@ public class Connection extends ClientNio implements ClientListener {
                 buff = null;
                 this.disconnect();
             } catch (IOException ex) {
-                Logger.getLogger(UpdateFingerprint.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Connection.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         return buff;

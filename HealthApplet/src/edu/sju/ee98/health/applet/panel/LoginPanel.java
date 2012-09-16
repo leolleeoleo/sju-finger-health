@@ -40,12 +40,12 @@ public class LoginPanel extends JPanel {
 
         this.account = new JTextField();
         this.account.setBounds(60, 10, 130, 20);
-        this.account.setText("store1234");
+//        this.account.setText("store1234");
         this.add(this.account);
 
         this.password = new JPasswordField();
         this.password.setBounds(60, 60, 130, 20);
-        this.password.setText("98765432");
+//        this.password.setText("98765432");
         this.add(this.password);
 
     }
