@@ -36,8 +36,8 @@ public class UpdateFingerprint extends JApplet {
     private FingerCharacterize characterize = null;
 
     /**
-     * Initialization method that will be called after the applet is loaded
-     * into the browser.
+     * Initialization method that will be called after the applet is loaded into
+     * the browser.
      */
     public void init() {
         this.setLayout(null);
@@ -52,7 +52,6 @@ public class UpdateFingerprint extends JApplet {
         this.create.setBounds(100, 130, 100, 30);
         this.create.setText(CREATE);
         this.create.addActionListener(new ActionListener() {
-
             @Override
             public void actionPerformed(ActionEvent e) {
                 FingerAction action = new FingerAction();
@@ -79,7 +78,6 @@ public class UpdateFingerprint extends JApplet {
             } else {
                 try {
                     Thread option = new Thread() {
-
                         @Override
                         public void run() {
                             JOptionPane.showOptionDialog(null, "Please scan Fingerprint, or click Cancel", "Information", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, new String[]{"Cancel"}, null);
@@ -158,7 +156,16 @@ public class UpdateFingerprint extends JApplet {
                 buff.put(("CHA:").getBytes());
                 buff.put(characterize.getCharacterize());
                 buff.put(("\r\n").getBytes());
+            } else if (s.equals("CHA SUCCESS")) {
+                JOptionPane.showMessageDialog(null, "Update Fingerprint Successful", "Connection", JOptionPane.INFORMATION_MESSAGE, null);
+                try {
+                    buff = null;
+                    this.client.disconnect();
+                } catch (IOException ex) {
+                    Logger.getLogger(UpdateFingerprint.class.getName()).log(Level.SEVERE, null, ex);
+                }
             } else {
+                JOptionPane.showMessageDialog(null, "Error : " + s, "Connection", JOptionPane.WARNING_MESSAGE, null);
                 try {
                     buff = null;
                     this.client.disconnect();
