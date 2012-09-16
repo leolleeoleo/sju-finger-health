@@ -2,6 +2,8 @@ package edu.sju.ee98.health.server.station;
 
 import edu.sju.ee98.fingerprint.tfsmodule.TFSCharacterize;
 import edu.sju.ee98.health.server.Manager;
+import edu.sju.ee98.health.sql.Cost;
+import edu.sju.ee98.health.sql.Fingerprint;
 import edu.sju.ee98.health.sql.Register;
 import edu.sju.ee98.health.sql.User;
 import edu.sju.ee98.sql.Table;
@@ -96,7 +98,8 @@ public class ClientHandler {
                     }
                     ArrayList<Table> user = Manager.sql.logInUser(characterize);
                     if (user.size() > 0) {
-                        if (Manager.sql.createCost(new Date(), ((User) table.get(0)).getUID(), ((User) user.get(0)).getUID(), expend) != null) {
+                        Cost cost = Manager.sql.createCost(new Date(), ((User) table.get(0)).getUID(), ((User) user.get(0)).getUID(), expend);
+                        if (cost != null) {
                             send("EXP SUCCESS\r\n".getBytes());
                         } else {
                             send("EXP FAIL NOTENOUGH\r\n".getBytes());
@@ -110,22 +113,36 @@ public class ClientHandler {
             } else if (receive.split(":")[0].equals("CHA")) {
                 if (this.table.get(0) instanceof User) {
                     byte[] characterize = Arrays.copyOfRange(buff.array(), 4, 200);
-                    try {
-                        Manager.module.open();
+                    synchronized (Manager.module) {
                         try {
-                            char num = (char) (Manager.module.getSize() + 1);
-                            Manager.module.addUser(num, (byte) 1, new TFSCharacterize(characterize));
-                            characterize = Manager.module.getCharacterize(num).getCharacterize();
-                            System.out.println("TFSchar=" + Arrays.toString(characterize));
-                        } catch (IOException ex) {
+                            Manager.module.open();
+                            try {
+                                char num;
+                                ArrayList<Table> fingerprint = Manager.sql.getFingerprint(((User) this.table.get(0)).getUID());
+                                if (fingerprint.size() > 0) {
+                                    num = (char) (((Fingerprint) fingerprint.get(0)).getFINGERPRINT()[1]);
+                                    Manager.sql.deleteFingerprint(((User) this.table.get(0)).getUID());
+                                    Manager.module.deleteUser(num);
+                                } else {
+                                    num = (char) (Manager.module.getSize() + 1);
+                                }
+                                Manager.module.addUser(num, (byte) 1, new TFSCharacterize(characterize));
+                                characterize = Manager.module.getCharacterize(num).getCharacterize();
+                                System.out.println("TFSchar=" + Arrays.toString(characterize));
+                            } catch (IOException ex) {
+                                Logger.getLogger(ClientHandler.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                            Manager.module.close();
+                        } catch (SerialPortException ex) {
                             Logger.getLogger(ClientHandler.class.getName()).log(Level.SEVERE, null, ex);
                         }
-                        Manager.module.close();
-                    } catch (SerialPortException ex) {
-                        Logger.getLogger(ClientHandler.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    Manager.sql.createFingerprint(((User) this.table.get(0)).getUID(), characterize);
-                    send("CHA SUCCESS\r\n".getBytes());
+                    ArrayList<Table> createFingerprint = Manager.sql.createFingerprint(((User) this.table.get(0)).getUID(), characterize);
+                    if (createFingerprint.size() > 0) {
+                        send("CHA SUCCESS\r\n".getBytes());
+                    } else {
+                        send("CHA FAIL\r\n".getBytes());
+                    }
                 } else {
                     send("LOGON ERROR\r\n".getBytes());
                 }

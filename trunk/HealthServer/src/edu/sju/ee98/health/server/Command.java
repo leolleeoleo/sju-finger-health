@@ -110,7 +110,7 @@ public class Command extends Thread {
                             Manager.module.getSerial().setParams(SerialPort.BAUDRATE_19200, SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_NONE);
                             try {
                                 Manager.module.deleteAll();
-                                ArrayList<Table> sp = Manager.sql.getFingerprint();
+                                ArrayList<Table> sp = Manager.sql.listFingerprint();
                                 for (int i = 0; i < sp.size(); i++) {
                                     byte finger[] = ((Fingerprint) sp.get(i)).getFINGERPRINT();
                                     Manager.module.addUser((char) finger[1], finger[2], new TFSCharacterize(finger));
