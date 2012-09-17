@@ -81,7 +81,7 @@ unsigned char PROTOCOL_action(unsigned char initial) {
                     i = 0;
                 }
             } while (receive[i] != 'N' || receive[i + 1] != 'A' || receive[i + 2] != 'M' || receive[i + 3] != 'E');
-            i += 4;
+            i += 5;
             j = 0;
             while (receive[i] != '\r' || receive[i + 1] != '\n') {
                 CLIENT_NAME[j++] = receive[i];
@@ -93,7 +93,7 @@ unsigned char PROTOCOL_action(unsigned char initial) {
                     i = 0;
                 }
             } while (receive[i] != 'P' || receive[i + 1] != 'O' || receive[i + 2] != 'I' || receive[i + 3] != 'N' || receive[i + 4] != 'T');
-            i += 5;
+            i += 6;
             j = 0;
             while (receive[i] != '\r' || receive[i + 1] != '\n') {
                 CLIENT_POINT[j++] = receive[i];
