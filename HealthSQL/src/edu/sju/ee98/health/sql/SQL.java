@@ -300,9 +300,13 @@ public class SQL extends SQLConnector {
      * @param name 名稱
      * @return
      */
-    public ArrayList<Table> createRegister(int rid, String account, String password, String region, String name) throws SQLException {
+    public ArrayList<Table> createRegister(int rid, String account, String password, String region, String name) {
         Register register = new Register(rid, account, password, region, name);
-        this.insert(register);
+        try {
+            this.insert(register);
+        } catch (SQLException ex) {
+            Logger.getLogger(SQL.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return this.select(register, register.objectRID());
     }
 
@@ -318,7 +322,24 @@ public class SQL extends SQLConnector {
      * @param name 名稱
      * @return
      */
-    public Register modifyRegister(User root, int rid, String account, String password, String region, String name) {
+    public Register updateRegister(int rid, String account, String password, String region, String name) {
+        try {
+            Register register = new Register(rid, account, password, region, name);
+            this.update(register, register.objectACCOUNT(), register.objectPASSWORD(),
+                    register.objectREGION(), register.objectNAME());
+            return this.getRegister(rid);
+        } catch (SQLException ex) {
+            Logger.getLogger(SQL.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    public Register getRegister(int rid) {
+        Register reg = new Register(rid);
+        ArrayList<Table> select = this.select(reg, reg.objectRID());
+        if (select.size() > 0) {
+            return (Register) select.get(0);
+        }
         return null;
     }
 

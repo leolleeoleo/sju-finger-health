@@ -30,6 +30,10 @@ public class Register implements Table {
     public Register() {
     }
 
+    public Register(int rid) {
+        this.setRID(rid);
+    }
+
     public Register(int rid, String account, String password, String region, String name) {
         this.setRID(rid);
         this.setACCOUNT(account);
@@ -106,8 +110,8 @@ public class Register implements Table {
      *
      * @return 密碼
      */
-    public int getPASSWORD() {
-        return (Integer) this.sqlObject[2].getData();
+    public String getPASSWORD() {
+        return (String) this.sqlObject[2].getData();
     }
 
     /**
