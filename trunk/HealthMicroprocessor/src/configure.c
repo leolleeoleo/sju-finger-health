@@ -50,7 +50,7 @@ unsigned char CONFIGURE_action(unsigned int x, unsigned int y) {
         } else if (key == 0x11) {
             CONFIGURE_CURSOR--;
         } else if (key == 0x08) {
-            CONFIGURE_DATA[--CONFIGURE_CURSOR] = '\0';
+            CONFIGURE_DATA[CONFIGURE_CURSOR--] = '\0';
         } else {
             CONFIGURE_DATA[CONFIGURE_CURSOR++] = key;
         }
