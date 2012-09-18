@@ -43,9 +43,12 @@ unsigned char PROTOCOL_action(unsigned char initial) {
     unsigned char i;
     unsigned char j;
     unsigned char *receive = GPRS_getData();
-    if (initial) {
+    if (initial == 1) {
         CLIENT_count = 0;
         CLIENT_connect();
+    } else if (initial == 2) {
+        GPRS_close();
+        return 2;
     }
     switch (CLIENT_count) {
         case 0:

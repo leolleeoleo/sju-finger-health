@@ -268,6 +268,7 @@ void STATE_roll_connect() {
 unsigned char STATE_roll_connect_action(unsigned int x, unsigned int y) {
     if (y > 208 && y < 240) {
         if (x > 224 && x < 288) {
+            PROTOCOL_action(2);
             return ASCII_ESC;
         }
     }
