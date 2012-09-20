@@ -59,7 +59,7 @@ public class Connection extends ClientNio implements ClientListener {
             buff.put(this.characterize.getCharacterize());
             buff.put(("\r\n").getBytes());
         } else if (s.equals("EXP SUCCESS")) {
-            JOptionPane.showMessageDialog(null, "Cost Point Successful", "Connection", JOptionPane.INFORMATION_MESSAGE, null);
+            JOptionPane.showMessageDialog(null, "消費扣點成功", "連線訊息", JOptionPane.INFORMATION_MESSAGE, null);
             try {
                 buff = null;
                 this.disconnect();
@@ -67,7 +67,15 @@ public class Connection extends ClientNio implements ClientListener {
                 Logger.getLogger(Connection.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Error : " + s, "Connection", JOptionPane.WARNING_MESSAGE, null);
+            String info;
+            if (s.endsWith("NOTENOUGH")) {
+                info = "點數不足";
+            } else if (s.endsWith("USER")) {
+                info = "指紋辨識失敗，請重新輸入指紋";
+            } else {
+                info = s;
+            }
+            JOptionPane.showMessageDialog(null, info, "連線訊息", JOptionPane.WARNING_MESSAGE, null);
             try {
                 buff = null;
                 this.disconnect();

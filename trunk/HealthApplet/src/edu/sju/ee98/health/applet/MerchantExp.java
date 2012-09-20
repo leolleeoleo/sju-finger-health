@@ -39,7 +39,7 @@ public class MerchantExp extends JApplet implements ActionListener {
         this.cost = new Cost();
         this.cost.setLocation(0, 0);
         this.add(cost);
-        this.enter = new JButton("Enter");
+        this.enter = new JButton("確定");
         this.enter.setBounds(100, 100, 80, 30);
         this.enter.addActionListener(this);
         this.add(enter);
@@ -71,7 +71,7 @@ public class MerchantExp extends JApplet implements ActionListener {
                     int point = cost.getPoint();
                     connect.action(account, password, point, print.gerCharacterize());
                 } catch (NumberFormatException ex) {
-                    JOptionPane.showMessageDialog(null, "Please input a number as integer.", "Cost Point", JOptionPane.WARNING_MESSAGE, null);
+                    JOptionPane.showMessageDialog(null, "請輸入整數。", "消費扣點", JOptionPane.WARNING_MESSAGE, null);
                 }
             }
         };

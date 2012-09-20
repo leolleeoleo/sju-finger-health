@@ -74,13 +74,13 @@ public class UpdateFingerprint extends JApplet {
         @Override
         public void run() {
             if (this.module == null) {
-                JOptionPane.showMessageDialog(null, "Can not connect to the Fingerprint Module!", "Serial Port Error", JOptionPane.ERROR_MESSAGE, null);
+                JOptionPane.showMessageDialog(null, "找不到指紋模組!", "指紋模組", JOptionPane.ERROR_MESSAGE, null);
             } else {
                 try {
                     Thread option = new Thread() {
                         @Override
                         public void run() {
-                            JOptionPane.showOptionDialog(null, "Please scan Fingerprint, or click Cancel", "Information", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, new String[]{"Cancel"}, null);
+                            JOptionPane.showOptionDialog(null, "請按壓三次指紋。", "訊息", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, new String[]{"取消"}, null);
                             module.setTimeout(1);
                         }
                     };
@@ -112,10 +112,10 @@ public class UpdateFingerprint extends JApplet {
                 }
             }
             if (characterize != null) {
-                JOptionPane.showMessageDialog(null, "Get Fingerprint characterize Successful.", "Fingerprint Information", JOptionPane.INFORMATION_MESSAGE, null);
+                JOptionPane.showMessageDialog(null, "指紋讀取成功。", "指紋訊息", JOptionPane.INFORMATION_MESSAGE, null);
                 System.out.println(characterize);
             } else {
-                JOptionPane.showMessageDialog(null, "Get Fingerprint characterize Fail.", "Fingerprint Information", JOptionPane.WARNING_MESSAGE, null);
+                JOptionPane.showMessageDialog(null, "指紋讀取失敗", "指紋訊息", JOptionPane.WARNING_MESSAGE, null);
                 return;
             }
             ClientNio client = new ClientNio("sju.servehttp.com", 1201);
@@ -139,8 +139,6 @@ public class UpdateFingerprint extends JApplet {
     private class Listener implements ClientListener {
 
         private ClientNio client;
-        private int stage = STAGE_USER;
-        private byte[] bytes;
 
         public Listener(ClientNio client) {
             this.client = client;
@@ -157,7 +155,7 @@ public class UpdateFingerprint extends JApplet {
                 buff.put(characterize.getCharacterize());
                 buff.put(("\r\n").getBytes());
             } else if (s.equals("CHA SUCCESS")) {
-                JOptionPane.showMessageDialog(null, "Update Fingerprint Successful", "Connection", JOptionPane.INFORMATION_MESSAGE, null);
+                JOptionPane.showMessageDialog(null, "指紋值上傳成功", "訊息", JOptionPane.INFORMATION_MESSAGE, null);
                 try {
                     buff = null;
                     this.client.disconnect();
@@ -165,7 +163,15 @@ public class UpdateFingerprint extends JApplet {
                     Logger.getLogger(UpdateFingerprint.class.getName()).log(Level.SEVERE, null, ex);
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "Error : " + s, "Connection", JOptionPane.WARNING_MESSAGE, null);
+                String info;
+                if (s.equals("CHA FAIL")) {
+                    info = "指紋上傳失敗";
+                } else if (s.equals("LOGON ERROR")) {
+                    info = "帳號或密碼錯誤";
+                } else {
+                    info = s;
+                }
+                JOptionPane.showMessageDialog(null, info, "訊息", JOptionPane.WARNING_MESSAGE, null);
                 try {
                     buff = null;
                     this.client.disconnect();
