@@ -26,13 +26,13 @@ public class FingerPrint {
     public FingerPrint() {
         module = SerialFinger.scan();
         if (this.module == null) {
-            JOptionPane.showMessageDialog(null, "Can not connect to the Fingerprint Module!", "Serial Port Error", JOptionPane.ERROR_MESSAGE, null);
+            JOptionPane.showMessageDialog(null, "找不到指紋模組!", "指紋模組", JOptionPane.ERROR_MESSAGE, null);
         }
     }
 
     public FingerCharacterize gerCharacterize() {
         if (this.module == null && (module = SerialFinger.scan()) == null) {
-            JOptionPane.showMessageDialog(null, "Can not connect to the Fingerprint Module!", "Serial Port Error", JOptionPane.ERROR_MESSAGE, null);
+            JOptionPane.showMessageDialog(null, "找不到指紋模組!", "指紋模組", JOptionPane.ERROR_MESSAGE, null);
             return null;
         }
         FingerCharacterize characterize = null;
@@ -40,7 +40,7 @@ public class FingerPrint {
             Thread option = new Thread() {
                 @Override
                 public void run() {
-                    JOptionPane.showOptionDialog(null, "Please scan Fingerprint, or click Cancel", "Information", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, new String[]{"Cancel"}, null);
+                    JOptionPane.showOptionDialog(null, "請按壓三次指紋。", "訊息", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, new String[]{"取消"}, null);
                     module.setTimeout(1);
                 }
             };
