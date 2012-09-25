@@ -112,7 +112,7 @@ void STATE_menu() {
     LCD_Display(0x00);
     LCD_setDefault();
     LCD_FontSize(1, 1);
-    LCD_PositionString(0x06, 0x00, TEXT_name);
+    LCD_PositionString(0x0A, 0x00, TEXT_name);
     LCD_PositionString(0x10, 0x60, TEXT_roll);
     LCD_PositionString(0x04, 0xD0, "ª¬ºA");
     LCD_DisplaySelection(LCD_DisplaySelection_DDRAM1);
@@ -236,14 +236,16 @@ void STATE_roll_finger() {
         INT_T0_clean();
         STATE_roll_state = STATE_roll_type_connect;
         STATE_roll_connect();
-    }
-    FLASH_finger(0);
+    } else {
+	    FLASH_finger(0);
+	}
     INT_T0_initial();
 }
 
 unsigned char STATE_roll_finger_action(unsigned int x, unsigned int y) {
     if (y > 208 && y < 240) {
         if (x > 224 && x < 288) {
+		    FINGER_deleteall();
             return ASCII_ESC;
         }
     }

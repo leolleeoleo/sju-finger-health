@@ -9,6 +9,7 @@
 #define	TFS_M51_H
 
 extern void FINGER_action();
+extern void FINGER_deleteall();
 extern unsigned char FINGER_check();
 extern unsigned char *getCharacterize();
 
