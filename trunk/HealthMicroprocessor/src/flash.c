@@ -2,7 +2,6 @@
 #include "ra8806.h"
 #include "base.h"
 
-
 code unsigned char image_people[] = {
     0x0C, 0x80,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -409,8 +408,7 @@ unsigned char FLASH_startup(unsigned char initial) {
         case 150:
             LCD_Display(0x00); //全白
             LCD_BoldFont(1); //開啟粗體
-            LCD_PositionString(0x08, 0x68, "健康加值");
-            LCD_PositionString(0x0A, 0x88, "一點靈");
+            LCD_PositionString(0x06, 0x70, "健康點點名");
             LCD_BoldFont(0); //關閉粗體
             break;
         case 200:

@@ -1,5 +1,5 @@
 
-code unsigned char TEXT_name[] = "健康加值一點靈";
+code unsigned char TEXT_name[] = "健康點點名";
 code unsigned char TEXT_roll[] = "點名";
 
 

@@ -209,10 +209,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>26</ColumnNumber>
+      <ColumnNumber>25</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>13</TopLine>
-      <CurrentLine>35</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\src\interrupt.c</PathWithFileName>
       <FilenameWithoutPath>interrupt.c</FilenameWithoutPath>
@@ -253,8 +253,8 @@
       <Focus>0</Focus>
       <ColumnNumber>32</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>1</TopLine>
-      <CurrentLine>18</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\src\configuration.c</PathWithFileName>
       <FilenameWithoutPath>configuration.c</FilenameWithoutPath>
@@ -272,10 +272,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>18</ColumnNumber>
+      <ColumnNumber>35</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>435</TopLine>
-      <CurrentLine>445</CurrentLine>
+      <TopLine>396</TopLine>
+      <CurrentLine>411</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\src\flash.c</PathWithFileName>
       <FilenameWithoutPath>flash.c</FilenameWithoutPath>
@@ -335,10 +335,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>32</ColumnNumber>
+      <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
       <TopLine>1</TopLine>
-      <CurrentLine>19</CurrentLine>
+      <CurrentLine>16</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\src\tfs_m51.c</PathWithFileName>
       <FilenameWithoutPath>tfs_m51.c</FilenameWithoutPath>
@@ -354,12 +354,12 @@
       <GroupNumber>4</GroupNumber>
       <FileNumber>12</FileNumber>
       <FileType>1</FileType>
-      <tvExp>0</tvExp>
+      <tvExp>1</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>49</ColumnNumber>
+      <ColumnNumber>27</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>409</TopLine>
-      <CurrentLine>409</CurrentLine>
+      <TopLine>100</TopLine>
+      <CurrentLine>115</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\src\state.c</PathWithFileName>
       <FilenameWithoutPath>state.c</FilenameWithoutPath>
@@ -407,8 +407,8 @@
       <Focus>0</Focus>
       <ColumnNumber>12</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>7</TopLine>
-      <CurrentLine>23</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\src\uart.c</PathWithFileName>
       <FilenameWithoutPath>uart.c</FilenameWithoutPath>
@@ -454,23 +454,87 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>18</ColumnNumber>
+      <ColumnNumber>16</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>5</TopLine>
-      <CurrentLine>5</CurrentLine>
+      <TopLine>41</TopLine>
+      <CurrentLine>51</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\src\client.c</PathWithFileName>
       <FilenameWithoutPath>client.c</FilenameWithoutPath>
     </File>
   </Group>
 
+  <AlienFiles>
+    <PathWithFilename>C:\NetBeansProject\FingerHealth\HealthMicroprocessor\src\tfs_m51.h</PathWithFilename>
+    <TopLine>1</TopLine>
+    <CurrentLine>12</CurrentLine>
+    <Constant>0</Constant>
+    <WindowPosition>
+      <length>0</length>
+      <flags>0</flags>
+      <showCmd>0</showCmd>
+      <MinPosition>
+        <xPos>0</xPos>
+        <yPos>0</yPos>
+      </MinPosition>
+      <MaxPosition>
+        <xPos>0</xPos>
+        <yPos>0</yPos>
+      </MaxPosition>
+      <NormalPosition>
+        <Top>0</Top>
+        <Left>0</Left>
+        <Right>0</Right>
+        <Bottom>0</Bottom>
+      </NormalPosition>
+    </WindowPosition>
+  </AlienFiles>
+
+  <AlienFiles>
+    <PathWithFilename>C:\NetBeansProject\FingerHealth\HealthMicroprocessor\src\text.h</PathWithFilename>
+    <TopLine>1</TopLine>
+    <CurrentLine>2</CurrentLine>
+    <Constant>0</Constant>
+    <WindowPosition>
+      <length>0</length>
+      <flags>0</flags>
+      <showCmd>0</showCmd>
+      <MinPosition>
+        <xPos>0</xPos>
+        <yPos>0</yPos>
+      </MinPosition>
+      <MaxPosition>
+        <xPos>0</xPos>
+        <yPos>0</yPos>
+      </MaxPosition>
+      <NormalPosition>
+        <Top>0</Top>
+        <Left>0</Left>
+        <Right>0</Right>
+        <Bottom>0</Bottom>
+      </NormalPosition>
+    </WindowPosition>
+  </AlienFiles>
+
   <MDIGroups>
     <Orientation>1</Orientation>
     <ActiveMDIGroup>0</ActiveMDIGroup>
     <MDIGroup>
       <Size>100</Size>
-      <ActiveTab>4</ActiveTab>
+      <ActiveTab>0</ActiveTab>
       <Documents>
+        <Doc>
+          <Name>.\src\flash.c</Name>
+          <ColumnNumber>35</ColumnNumber>
+          <TopLine>396</TopLine>
+          <CurrentLine>411</CurrentLine>
+        </Doc>
+        <Doc>
+          <Name>src\text.h</Name>
+          <ColumnNumber>28</ColumnNumber>
+          <TopLine>1</TopLine>
+          <CurrentLine>2</CurrentLine>
+        </Doc>
         <Doc>
           <Name>.\src\ra8806.c</Name>
           <ColumnNumber>73</ColumnNumber>
@@ -491,15 +555,15 @@
         </Doc>
         <Doc>
           <Name>.\src\state.c</Name>
-          <ColumnNumber>49</ColumnNumber>
-          <TopLine>409</TopLine>
-          <CurrentLine>409</CurrentLine>
+          <ColumnNumber>27</ColumnNumber>
+          <TopLine>100</TopLine>
+          <CurrentLine>115</CurrentLine>
         </Doc>
         <Doc>
           <Name>.\src\client.c</Name>
-          <ColumnNumber>18</ColumnNumber>
-          <TopLine>5</TopLine>
-          <CurrentLine>5</CurrentLine>
+          <ColumnNumber>16</ColumnNumber>
+          <TopLine>41</TopLine>
+          <CurrentLine>51</CurrentLine>
         </Doc>
         <Doc>
           <Name>.\src\base.c</Name>
@@ -530,6 +594,18 @@
           <ColumnNumber>139</ColumnNumber>
           <TopLine>4</TopLine>
           <CurrentLine>4</CurrentLine>
+        </Doc>
+        <Doc>
+          <Name>.\src\tfs_m51.c</Name>
+          <ColumnNumber>0</ColumnNumber>
+          <TopLine>1</TopLine>
+          <CurrentLine>16</CurrentLine>
+        </Doc>
+        <Doc>
+          <Name>src\tfs_m51.h</Name>
+          <ColumnNumber>31</ColumnNumber>
+          <TopLine>1</TopLine>
+          <CurrentLine>12</CurrentLine>
         </Doc>
       </Documents>
     </MDIGroup>
