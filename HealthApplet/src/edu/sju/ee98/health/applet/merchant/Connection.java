@@ -37,6 +37,7 @@ public class Connection extends ClientNio implements ClientListener {
             this.connect();
             this.run();
         } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, "無法與伺服器建立連線", "連線訊息", JOptionPane.ERROR_MESSAGE, null);
             Logger.getLogger(Connection.class.getName()).log(Level.SEVERE, null, ex);
         }
 

@@ -40,7 +40,7 @@ public class FingerPrint {
             Thread option = new Thread() {
                 @Override
                 public void run() {
-                    JOptionPane.showOptionDialog(null, "請按壓三次指紋。", "訊息", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, new String[]{"取消"}, null);
+                    JOptionPane.showOptionDialog(null, "請按壓指紋。", "訊息", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, new String[]{"取消"}, null);
                     module.setTimeout(1);
                 }
             };
