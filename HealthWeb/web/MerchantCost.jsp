@@ -35,6 +35,8 @@
                     <jsp:params>
                         <jsp:param name="account" value="<%= user.getUser().getACCOUNT()%>" />
                         <jsp:param name="password" value="<%= user.getUser().getPASSWORD()%>" />
+                        <jsp:param name="host" value="health.servehttp.com" />
+                        <jsp:param name="port" value="1201" />
                     </jsp:params>
                     <jsp:fallback>Plugin tag OBJECT or EMBED not supported by browser.</jsp:fallback>
                 </jsp:plugin>
