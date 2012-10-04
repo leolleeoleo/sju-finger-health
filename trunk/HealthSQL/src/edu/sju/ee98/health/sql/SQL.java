@@ -369,14 +369,14 @@ public class SQL extends SQLConnector {
      * @param meter 公尺
      * @return
      */
-    public Miles createMiles(int register_a, int register_b, int meter) {
+    public ArrayList<Table> createMiles(int register_a, int register_b, int meter) {
         Miles miles = new Miles(register_a, register_b, meter);
         try {
             this.insert(miles);
         } catch (SQLException ex) {
             Logger.getLogger(SQL.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return (Miles) this.select(miles, miles.objectMETER()).get(0);
+        return this.select(miles, miles.objectMETER());
     }
 
     /**
@@ -388,7 +388,16 @@ public class SQL extends SQLConnector {
      * @param meter 公尺
      * @return
      */
-    public Miles modifyMiles(Miles table, String register_a, String register_b, String meter) {
+    public Miles updateMiles(Miles mile) {
+        try {
+            this.update(mile, mile.objectREGISTER_A(), mile.objectREGISTER_B(), mile.objectMETER());
+        } catch (SQLException ex) {
+            Logger.getLogger(SQL.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        ArrayList<Table> select = this.select(mile, mile.objectREGISTER_A(), mile.objectREGISTER_B());
+        if (select.size() > 0) {
+            return (Miles) select.get(0);
+        }
         return null;
     }
 
@@ -399,6 +408,15 @@ public class SQL extends SQLConnector {
      */
     public void deleteMiles(User root, Miles miles) throws SQLException {
         this.delete(miles);
+    }
+
+    public Miles getMiles(int ridA, int ridB) {
+        Miles miles = new Miles(ridA, ridB);
+        ArrayList<Table> select = this.select(miles, miles.objectREGISTER_A(), miles.objectREGISTER_B());
+        if (select.size() > 0) {
+            return (Miles) select.get(0);
+        }
+        return null;
     }
 
     /**

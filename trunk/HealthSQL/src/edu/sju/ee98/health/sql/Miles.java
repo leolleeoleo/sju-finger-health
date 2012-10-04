@@ -32,6 +32,11 @@ public class Miles implements Table {
         this.setMETER(meter);
     }
 
+    public Miles(int register_a, int register_b) {
+        this.setREGISTER_A(register_a);
+        this.setREGISTER_B(register_b);
+    }
+
     /**
      * 設定登錄站A
      *
