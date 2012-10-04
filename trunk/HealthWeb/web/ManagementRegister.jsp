@@ -27,7 +27,7 @@
             <%@ include file="MemberList.html" %>
             <%@ include file="ManagementList.html" %>
             <div id="mainContent">
-                <h1>建立/修改帳號</h1>
+                <h1>建立/修改登入站</h1>
                 <jsp:useBean id="register" class="edu.sju.ee98.health.web.beans.RegisterBean" scope="request"/>
                 <jsp:setProperty name="register" property="*"/>
                 <% String modify;%>

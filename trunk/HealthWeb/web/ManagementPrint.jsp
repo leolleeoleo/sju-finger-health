@@ -33,6 +33,10 @@
                 <jsp:plugin type="applet" code="edu.sju.ee98.health.applet.UpdateFingerprint" 
                             codebase="applet" archive="HealthApplet.jar, jssc.jar, FingerModule.jar" 
                             width="300" height="200">
+                    <jsp:params>
+                        <jsp:param name="host" value="health.servehttp.com" />
+                        <jsp:param name="port" value="1201" />
+                    </jsp:params>
                     <jsp:fallback>Plugin tag OBJECT or EMBED not supported by browser.</jsp:fallback>
                 </jsp:plugin>
                 <h1>指紋列表</h1>
