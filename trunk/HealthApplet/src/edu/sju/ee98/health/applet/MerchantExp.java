@@ -20,10 +20,10 @@ import javax.swing.JOptionPane;
  */
 public class MerchantExp extends JApplet implements ActionListener {
 
-    private String account = "store1234";
-    private String password = "98765432";
-    private String host = "sju.servehttp.com";
-    private int port = 1201;
+    private String account;
+    private String password;
+    private String host;
+    private int port;
     private Cost cost;
     private JButton enter;
     private FingerPrint print;
@@ -34,7 +34,7 @@ public class MerchantExp extends JApplet implements ActionListener {
      * the browser.
      */
     public void init() {
-//        this.initParameter();
+        this.initParameter();
         this.initLayout();
         this.cost = new Cost();
         this.cost.setLocation(0, 0);

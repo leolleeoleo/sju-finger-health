@@ -34,12 +34,16 @@ public class UpdateFingerprint extends JApplet {
     private LoginPanel login;
     private JButton create;
     private FingerCharacterize characterize = null;
+    private String host;
+    private int port;
 
     /**
      * Initialization method that will be called after the applet is loaded into
      * the browser.
      */
     public void init() {
+        this.host = this.getParameter("host");
+        this.port = Integer.parseInt(this.getParameter("port"));
         this.setLayout(null);
         this.setSize(300, 200);
         this.getContentPane().setBackground(Color.WHITE);
@@ -118,7 +122,7 @@ public class UpdateFingerprint extends JApplet {
                 JOptionPane.showMessageDialog(null, "指紋讀取失敗", "指紋訊息", JOptionPane.WARNING_MESSAGE, null);
                 return;
             }
-            ClientNio client = new ClientNio("sju.servehttp.com", 1201);
+            ClientNio client = new ClientNio(host, port);
             Listener listener = new Listener(client);
             client.addClientListener(listener);
             try {
