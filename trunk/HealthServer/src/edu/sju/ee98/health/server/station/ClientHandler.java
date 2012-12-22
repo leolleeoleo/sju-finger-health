@@ -100,7 +100,8 @@ public class ClientHandler {
                     if (user.size() > 0) {
                         Cost cost = Manager.sql.createCost(new Date(), ((User) table.get(0)).getUID(), ((User) user.get(0)).getUID(), expend);
                         if (cost != null) {
-                            send("EXP SUCCESS\r\n".getBytes());
+                            send(("EXP SUCCESS:" + ((User) user.get(0)).getLAST_NAME() + ((User) user.get(0)).getFIRST_NAME()
+                                    + ":" + (Manager.sql.plusPoints(((User) user.get(0))) - Manager.sql.costPoints(((User) user.get(0)))) + "\r\n").getBytes("BIG5"));
                         } else {
                             send("EXP FAIL NOTENOUGH\r\n".getBytes());
                         }
