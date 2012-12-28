@@ -48,6 +48,7 @@ public class Connection extends ClientNio implements ClientListener {
     public ByteBuffer receivePerformed(byte[] data) {
         ByteBuffer buff = ByteBuffer.allocate(1024);
         String s = new String(data).split("\r\n")[0];
+        Logger.getLogger(Connection.class.getName()).log(Level.INFO, s);
         if (s.equals("CONNECTED")) {
             buff.put(("LOGIN:" + this.account + ":" + this.password + "\r\n").getBytes());
         } else if (s.equals("LOGIN SUCCESS")) {
@@ -59,8 +60,11 @@ public class Connection extends ClientNio implements ClientListener {
             buff.put((":").getBytes());
             buff.put(this.characterize.getCharacterize());
             buff.put(("\r\n").getBytes());
-        } else if (s.equals("EXP SUCCESS")) {
-            JOptionPane.showMessageDialog(null, "消費扣點成功", "連線訊息", JOptionPane.INFORMATION_MESSAGE, null);
+        } else if (s.split(":")[0].equals("EXP SUCCESS")) {
+            String name = s.split(":")[1];
+            String point = s.split(":")[2];
+            JOptionPane.showMessageDialog(null, "消費扣點成功" + "\r\n姓名:" + name + "\r\n剩餘點數" + point,
+                    "連線訊息", JOptionPane.INFORMATION_MESSAGE, null);
             try {
                 buff = null;
                 this.disconnect();
