@@ -1,6 +1,5 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (c) 2012, St. John's University and/or its affiliates. All rights reserved.
  */
 package edu.sju.ee98.health.server.finger;
 
@@ -11,28 +10,48 @@ import jssc.SerialPort;
 import jssc.SerialPortException;
 
 /**
+ * 串流
  *
- * @author Leo
+ * @author 98405067
  */
 public class SerialStream extends SerialPort {
 
     private Input input;
     private Output output;
 
+    /**
+     * 建立串流
+     *
+     * @param portName 串列埠名稱
+     */
     public SerialStream(String portName) {
         super(portName);
         this.input = new Input();
         this.output = new Output();
     }
 
-    public Input getInputStream() {
+    /**
+     * 輸入資料流
+     *
+     * @return
+     */
+    Input getInputStream() {
         return input;
     }
 
-    public Output getOutputStream() {
+    /**
+     * 輸出資料流
+     *
+     * @return
+     */
+    Output getOutputStream() {
         return output;
     }
 
+    /**
+     * 輸入
+     *
+     */
     private class Input extends InputStream {
 
         @Override
@@ -54,6 +73,10 @@ public class SerialStream extends SerialPort {
         }
     }
 
+    /**
+     * 輸出
+     *
+     */
     private class Output extends OutputStream {
 
         @Override

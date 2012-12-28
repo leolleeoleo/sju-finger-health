@@ -1,6 +1,5 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (c) 2012, St. John's University and/or its affiliates. All rights reserved.
  */
 package edu.sju.ee98.health.server;
 
@@ -19,18 +18,29 @@ import jssc.SerialPort;
 import jssc.SerialPortException;
 
 /**
+ * 指令
  *
- * @author Leo
+ * @author 98405067
  */
 public class Command extends Thread {
 
     private boolean state = false;
 
+    /**
+     * 建立指令
+     *
+     */
     public Command() {
         this.state(true);
         this.start();
     }
 
+    /**
+     * 設定狀態
+     * 開啟或關閉
+     *
+     * @param state 狀態
+     */
     public void state(boolean state) {
         this.state = state;
         if (state) {
@@ -77,37 +87,31 @@ public class Command extends Thread {
                 } else if (read.startsWith("finger")) {
                     if (read.startsWith("finger size")) {
                         try {
-                            Manager.module.setTimeout(0);
-                            Manager.module.getSerial().openPort();
-                            Manager.module.getSerial().setParams(SerialPort.BAUDRATE_19200, SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_NONE);
+                            Manager.module.open();
                             try {
                                 System.out.println(Manager.module.getSize());
                             } catch (IOException ex) {
                                 Logger.getLogger(Command.class.getName()).log(Level.SEVERE, null, ex);
                             }
-                            Manager.module.getSerial().closePort();
+                            Manager.module.close();
                         } catch (SerialPortException ex) {
                             Logger.getLogger(Command.class.getName()).log(Level.SEVERE, null, ex);
                         }
                     } else if (read.startsWith("finger delete")) {
                         try {
-                            Manager.module.setTimeout(0);
-                            Manager.module.getSerial().openPort();
-                            Manager.module.getSerial().setParams(SerialPort.BAUDRATE_19200, SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_NONE);
+                            Manager.module.open();
                             try {
                                 Manager.module.deleteAll();
                             } catch (IOException ex) {
                                 Logger.getLogger(Command.class.getName()).log(Level.SEVERE, null, ex);
                             }
-                            Manager.module.getSerial().closePort();
+                            Manager.module.close();
                         } catch (SerialPortException ex) {
                             Logger.getLogger(Command.class.getName()).log(Level.SEVERE, null, ex);
                         }
                     } else if (read.startsWith("finger import")) {
                         try {
-                            Manager.module.setTimeout(0);
-                            Manager.module.getSerial().openPort();
-                            Manager.module.getSerial().setParams(SerialPort.BAUDRATE_19200, SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_NONE);
+                            Manager.module.open();
                             try {
                                 Manager.module.deleteAll();
                                 ArrayList<Table> sp = Manager.sql.listFingerprint();
@@ -118,16 +122,14 @@ public class Command extends Thread {
                             } catch (IOException ex) {
                                 Logger.getLogger(Command.class.getName()).log(Level.SEVERE, null, ex);
                             }
-                            Manager.module.getSerial().closePort();
+                            Manager.module.close();
                         } catch (SerialPortException ex) {
                             Logger.getLogger(Command.class.getName()).log(Level.SEVERE, null, ex);
                         }
                     } else if (read.startsWith("finger check")) {
                         int num = Integer.parseInt(read.split(" ")[2]);
                         try {
-                            Manager.module.setTimeout(0);
-                            Manager.module.getSerial().openPort();
-                            Manager.module.getSerial().setParams(SerialPort.BAUDRATE_19200, SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_NONE);
+                            Manager.module.open();
                             try {
                                 byte[] characterize;
                                 characterize = Manager.module.getCharacterize((char) num).getCharacterize();
@@ -138,7 +140,7 @@ public class Command extends Thread {
                             } catch (IOException ex) {
                                 Logger.getLogger(Command.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
                             }
-                            Manager.module.getSerial().closePort();
+                            Manager.module.close();
                         } catch (SerialPortException ex) {
                             Logger.getLogger(Command.class.getName()).log(Level.SEVERE, null, ex);
                         }

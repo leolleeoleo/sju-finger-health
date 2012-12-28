@@ -1,6 +1,5 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (c) 2012, St. John's University and/or its affiliates. All rights reserved.
  */
 package edu.sju.ee98.health.server.config;
 
@@ -10,8 +9,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
+ * 資料庫
  *
- * @author MA780G
+ * @author 98405067
  */
 public class Database implements java.io.Serializable {
 
