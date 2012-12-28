@@ -1,6 +1,5 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (c) 2012, St. John's University and/or its affiliates. All rights reserved.
  */
 package edu.sju.ee98.health.sql;
 
@@ -13,8 +12,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
+ * 使用者
  *
- * @author MA780G
+ * @author 98405067
  */
 public class User implements Table {
 
@@ -32,9 +32,28 @@ public class User implements Table {
         new INT("POINTS", false, true, false, false, false, false, false)
     };
 
+    /**
+     * 使用者
+     *
+     */
     public User() {
     }
 
+    /**
+     * 使用者
+     *
+     * @param uid 使用者編號
+     * @param account 帳號
+     * @param password 密碼
+     * @param group 群組
+     * @param last_name 姓氏
+     * @param first_name 名子
+     * @param birthday 生日
+     * @param address 地址
+     * @param email 郵件
+     * @param phone 電話
+     * @param points 點數(未使用)
+     */
     public User(String uid, String account, String password, int group, String last_name,
             String first_name, Date birthday, String address, String email, String phone, int points) {
         this.setUID(uid);
@@ -168,45 +187,45 @@ public class User implements Table {
     }
 
     /**
-     * 取得姓
+     * 取得姓氏
      *
-     * @return 姓
+     * @return 姓氏
      */
     public String getLAST_NAME() {
         return (String) this.sqlObject[4].getData();
     }
 
     /**
-     * 取得姓物件
+     * 取得姓氏物件
      *
-     * @return 姓物件
+     * @return 姓氏物件
      */
     public SQLObject objectLAST_NAME() {
         return this.sqlObject[4];
     }
 
     /**
-     * 設定名
+     * 設定名字
      *
-     * @param data 名
+     * @param data 名字
      */
     public void setFIRST_NAME(String data) {
         this.sqlObject[5].setData(data);
     }
 
     /**
-     * 取得名
+     * 取得名字
      *
-     * @return 名
+     * @return 名字
      */
     public String getFIRST_NAME() {
         return (String) this.sqlObject[5].getData();
     }
 
     /**
-     * 取得名物件
+     * 取得名字物件
      *
-     * @return 名物件
+     * @return 名字物件
      */
     public SQLObject objectFIRST_NAME() {
         return this.sqlObject[5];

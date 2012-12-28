@@ -1,6 +1,5 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (c) 2012, St. John's University and/or its affiliates. All rights reserved.
  */
 package edu.sju.ee98.health.sql;
 
@@ -12,8 +11,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
+ * 消費
  *
- * @author 張麟翔
+ * @author 98405084
  */
 public class Cost implements Table {
 

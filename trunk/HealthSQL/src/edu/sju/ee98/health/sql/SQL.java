@@ -1,6 +1,5 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (c) 2012, St. John's University and/or its affiliates. All rights reserved.
  */
 package edu.sju.ee98.health.sql;
 
@@ -14,98 +13,28 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
+ * 資料庫
  *
- * @author MA780G
+ * @author 98405067
  */
 public class SQL extends SQLConnector {
 
+    /**
+     * 建立資料庫
+     *
+     * @param host 主機位置
+     * @param name 資料庫名稱
+     * @param user 使用者名稱
+     * @param passwd 密碼
+     */
     public SQL(String host, String name, String user, String passwd) {
         super(host, name + "?useUnicode=true&characterEncoding=utf8", user, passwd);
-        //"127.0.0.1:3306/authtest02", "authser", "authpasswd"
     }
 
-//    public static void main(String[] args) {
-//        SQL sql = new SQL("127.0.0.1", "health_test", "root", "sql");
-    //        User user = sql.logInUser(TestSQL.c.getBytes());
-    //        User user = sql.logInUser(TestSQL.c.getBytes());
-//    }
-    public void test_Group() {
-        try {
-            //        this.createTable(new Group());
-            Group g = new Group();
-            g.setGID(100);
-            g.setNAME("fdgdg");
-            this.insert(g);
-
-            this.select(g, g.objectGID());
-            g.print();
-        } catch (SQLException ex) {
-            Logger.getLogger(SQL.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    public void test_Register() {
-        try {
-            //        this.createTable(new Register());
-            Register r = new Register();
-            r.setRID(101);
-            r.setACCOUNT("123465");
-            r.setPASSWORD("32434");
-            r.setREGION("台北");
-            r.setNAME("一二三");
-            this.insert(r);
-        } catch (SQLException ex) {
-            Logger.getLogger(SQL.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
-
-    public void test_Miles() {
-        try {
-            //        this.createTable(new Miles());
-            Miles m = new Miles();
-            m.setREGISTER_A(1312313);
-            m.setREGISTER_B(1234853);
-            m.setMETER(1231);
-            this.insert(m);
-
-            this.select(m, m.objectREGISTER_A());
-            m.print();
-        } catch (SQLException ex) {
-            Logger.getLogger(SQL.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    public void test_Record() {
-        try {
-            //        this.createTable(new Record());
-            Record re = new Record();
-            re.setUSER("");
-            re.setTIME(new Date(Date.UTC(2012, 4, 5, 21, 2, 23)));
-            re.setREGISTER(13243);
-            this.insert(re);
-        } catch (SQLException ex) {
-            Logger.getLogger(SQL.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    public void test_Cost() {
-        try {
-            //        this.createTable(new Cost());
-            Cost c = new Cost();
-            c.setPOINTS(12);
-            c.setSTORE("");
-            c.setUSER("");
-            c.setTIME(new Date(Date.UTC(2012, 4, 5, 6, 7, 8)));
-            this.insert(c);
-        } //END of Test Code==============================================================
-        catch (SQLException ex) {
-            Logger.getLogger(SQL.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-//END of Test Code==============================================================
-
-//Tables++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    /**
+     * 建立資料表
+     *
+     */
     public void createTables() {
         try {
             this.createTable(new User());
@@ -115,12 +44,15 @@ public class SQL extends SQLConnector {
             this.createTable(new Record());
             this.createTable(new Cost());
             this.createTable(new Fingerprint());
-            //...
         } catch (SQLException ex) {
             Logger.getLogger(SQL.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
+    /**
+     * 刪除資料表
+     *
+     */
     public void dropTables() {
         try {
             this.dropTable(new User());
@@ -130,7 +62,6 @@ public class SQL extends SQLConnector {
             this.dropTable(new Record());
             this.dropTable(new Cost());
             this.dropTable(new Fingerprint());
-            //...
         } catch (SQLException ex) {
             Logger.getLogger(SQL.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -163,6 +94,21 @@ public class SQL extends SQLConnector {
         return this.select(user, user.objectUID());
     }
 
+    /**
+     * 更新使用者資料
+     *
+     * @param uid 使用者編號
+     * @param account 帳號
+     * @param password 密碼
+     * @param group 群組
+     * @param last_name 姓氏
+     * @param fist_name 名字
+     * @param birthday 生日
+     * @param address 地址
+     * @param email 郵件
+     * @param phone 電話
+     * @return 使用者列表
+     */
     public ArrayList<Table> updateUser(String uid, String account, String password, int group, String last_name,
             String fist_name, Date birthday, String address, String email, String phone) {
         User user = new User(uid, account, password, group, last_name, fist_name, birthday, address, email, phone, 0);
@@ -177,41 +123,21 @@ public class SQL extends SQLConnector {
     }
 
     /**
-     * 修改使用者
-     *
-     * @param user 使用者
-     * @param account 帳號
-     * @param password 密碼
-     * @param fingerpoint 指紋
-     * @return
-     */
-    public User modifyUser(User user, String password) {
-        user.setPASSWORD(password);
-        try {
-            this.update(user, user.objectPASSWORD());
-        } catch (SQLException ex) {
-            Logger.getLogger(SQL.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return (User) this.select(user, user.objectUID()).get(0);
-    }
-
-    /**
      * 刪除使用者
      *
-     * @param root
      * @param user 被刪除的使用者
-     * @throws Exception
+     * @throws Exception 例外
      */
     public void deleteUser(User user) throws SQLException {
         this.delete(user);
     }
 
     /**
-     * 登入
+     * 登入使用者
      *
      * @param account 帳號
      * @param password 密碼
-     * @return
+     * @return　使用者列表
      */
     public ArrayList<Table> logInUser(String account, String password) {
         User u = new User();
@@ -220,6 +146,12 @@ public class SQL extends SQLConnector {
         return this.select(u, u.objectACCOUNT(), u.objectPASSWORD());
     }
 
+    /**
+     * 登入使用者
+     *
+     * @param fingerprint 指紋特徵值
+     * @return 使用者列表
+     */
     public ArrayList<Table> logInUser(byte[] fingerprint) {
         Fingerprint f = new Fingerprint();
         f.setFINGERPRINT(fingerprint);
@@ -231,6 +163,13 @@ public class SQL extends SQLConnector {
         return select;
     }
 
+    /**
+     * 登入登入站
+     *
+     * @param account 帳號
+     * @param password 密碼
+     * @return 登入站列表
+     */
     public ArrayList<Table> logInRegister(String account, String password) {
         Register r = new Register();
         r.setACCOUNT(account);
@@ -238,10 +177,21 @@ public class SQL extends SQLConnector {
         return this.select(r, r.objectACCOUNT(), r.objectPASSWORD());
     }
 
+    /**
+     * 使用者列表
+     *
+     * @return 使用者列表
+     */
     public ArrayList<Table> listUser() {
         return this.select(new User());
     }
 
+    /**
+     * 取得用戶
+     *
+     * @param uid　用戶編號
+     * @return　用戶
+     */
     public User getUser(String uid) {
         User user = new User();
         user.setUID(uid);
@@ -252,13 +202,12 @@ public class SQL extends SQLConnector {
         return null;
     }
 
-//Table Group+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     /**
      * 建立群組
      *
      * @param gid 群組標號
      * @param name 名稱
-     * @return
+     * @return 群組
      */
     public Group createGroup(int gid, String name) {
         Group group = new Group(gid, name);
@@ -276,29 +225,31 @@ public class SQL extends SQLConnector {
      * @param table 群組
      * @param gid 群組編號
      * @param name 名稱
-     * @return
+     * @return 群組
      */
     public Group modifyGroup(Group table, String gid, String name) {
         return null;
     }
 
     /**
+     * 刪除群組
      *
-     * @param group 刪除群組
+     * @param group 群組
+     * @throws SQLException 例外
      */
     public void deleteGroup(Group group) throws SQLException {
         this.delete(group);
     }
 
-//Table Register++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     /**
      * 建立登錄站
      *
+     * @param rid 登錄站編號
      * @param account 帳號
      * @param password 密碼
-     * @param rid 登錄站編號
+     * @param region 地區
      * @param name 名稱
-     * @return
+     * @return 登錄站列表
      */
     public ArrayList<Table> createRegister(int rid, String account, String password, String region, String name) {
         Register register = new Register(rid, account, password, region, name);
@@ -320,7 +271,7 @@ public class SQL extends SQLConnector {
      * @param region 地區
      * @param rid 登錄站編號
      * @param name 名稱
-     * @return
+     * @return 登錄站
      */
     public Register updateRegister(int rid, String account, String password, String region, String name) {
         try {
@@ -344,30 +295,31 @@ public class SQL extends SQLConnector {
     }
 
     /**
+     * 刪除登錄站
      *
-     * @param table 刪除登錄站
-     * @return
+     * @param register 登錄站
+     * @throws SQLException 資料庫例外
      */
-    public void deleteRegister(User root, Register register) throws SQLException {
+    public void deleteRegister(Register register) throws SQLException {
         this.delete(register);
     }
 
     /**
+     * 登入站列表
      *
-     * @return
+     * @return 登入站列表
      */
     public ArrayList<Table> listRegister() {
         return this.select(new Register());
     }
 
-//Table Miles+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     /**
      * 建立里程
      *
      * @param register_a 登錄站A
      * @param register_b 登錄站B
      * @param meter 公尺
-     * @return
+     * @return 里程列表
      */
     public ArrayList<Table> createMiles(int register_a, int register_b, int meter) {
         Miles miles = new Miles(register_a, register_b, meter);
@@ -382,34 +334,35 @@ public class SQL extends SQLConnector {
     /**
      * 修改里程
      *
-     * @param table 里程
-     * @param register_a 登錄站A
-     * @param register_b 登錄站B
-     * @param meter 公尺
-     * @return
+     * @param mile 里程
+     * @return 里程列表
      */
-    public Miles updateMiles(Miles mile) {
+    public ArrayList<Table> updateMiles(Miles mile) {
         try {
             this.update(mile, mile.objectREGISTER_A(), mile.objectREGISTER_B(), mile.objectMETER());
         } catch (SQLException ex) {
             Logger.getLogger(SQL.class.getName()).log(Level.SEVERE, null, ex);
         }
-        ArrayList<Table> select = this.select(mile, mile.objectREGISTER_A(), mile.objectREGISTER_B());
-        if (select.size() > 0) {
-            return (Miles) select.get(0);
-        }
-        return null;
+        return this.select(mile, mile.objectREGISTER_A(), mile.objectREGISTER_B());
     }
 
     /**
      * 刪除里程
      *
-     * @param table 里程
+     * @param miles 里程
+     * @throws SQLException 資料庫例外
      */
-    public void deleteMiles(User root, Miles miles) throws SQLException {
+    public void deleteMiles(Miles miles) throws SQLException {
         this.delete(miles);
     }
 
+    /**
+     * 取得里程
+     *
+     * @param ridA 登錄站編號
+     * @param ridB 登錄站編號
+     * @return 里程
+     */
     public Miles getMiles(int ridA, int ridB) {
         Miles miles = new Miles(ridA, ridB);
         ArrayList<Table> select = this.select(miles, miles.objectREGISTER_A(), miles.objectREGISTER_B());
@@ -420,14 +373,14 @@ public class SQL extends SQLConnector {
     }
 
     /**
+     * 里程列表
      *
-     * @return
+     * @return 里程列表
      */
     public ArrayList<Table> listMiles() {
         return this.select(new Miles());
     }
 
-//Table Record++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     /**
      * 建立紀錄
      *
@@ -608,7 +561,12 @@ public class SQL extends SQLConnector {
         return result;
     }
 
-//point++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    /**
+     * 計算總點數
+     *
+     * @param user 使用者
+     * @return 總點數
+     */
     public int plusPoints(User user) {
         int point = 0;
         Record record = new Record();
@@ -633,6 +591,12 @@ public class SQL extends SQLConnector {
         return point;
     }
 
+    /**
+     * 計算消費點數
+     *
+     * @param user 使用者
+     * @return 消費點數
+     */
     public int costPoints(User user) {
         int point = 0;
         Cost cost = new Cost();

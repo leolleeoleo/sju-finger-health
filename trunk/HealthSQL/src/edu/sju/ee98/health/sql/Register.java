@@ -1,6 +1,6 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (c) 2012, St. John's University and/or its affiliates. All rights reserved.
+ * 
  */
 package edu.sju.ee98.health.sql;
 
@@ -12,14 +12,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
+ * 登錄站
  *
- * @author Leo
+ * @author 98405067
  */
 public class Register implements Table {
 
-    /**
-     *
-     */
     public final SQLObject[] sqlObject = {
         new INT("RID", true, true, false, false, false, false, false),
         new VARCHAR(20, "ACCOUNT", false, true, false, false, false, false, false),
