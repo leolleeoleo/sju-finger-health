@@ -34,7 +34,7 @@
                             codebase="applet" archive="HealthApplet.jar, jssc.jar, FingerModule.jar" 
                             width="300" height="200">
                     <jsp:params>
-                        <jsp:param name="host" value="health.servehttp.com" />
+                        <jsp:param name="host" value="163.21.76.50" />
                         <jsp:param name="port" value="1201" />
                     </jsp:params>
                     <jsp:fallback>Plugin tag OBJECT or EMBED not supported by browser.</jsp:fallback>

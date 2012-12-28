@@ -60,12 +60,12 @@ public class MileBean {
         if (this.ridA == 0 || this.ridB == 0 || this.meter == 0) {
             return "";
         } else if (Manager.SQL().getMiles(ridA, ridB) != null) {
-            Miles updateMiles = Manager.SQL().updateMiles(new Miles(this.ridA, this.ridB, this.meter));
-            if (updateMiles != null) {
+            ArrayList<Table> updateMiles = Manager.SQL().updateMiles(new Miles(this.ridA, this.ridB, this.meter));
+            if (updateMiles.isEmpty()) {
+                return "更新失敗";
+            } else {
                 this.setMile(null);
                 return "更新成功";
-            } else {
-                return "更新失敗";
             }
         } else {
             ArrayList<Table> createRegister = Manager.SQL().createMiles(this.ridA, this.ridB, this.meter);

@@ -37,6 +37,9 @@
                 <% }%>
                 <form method="post" action="S_Member?action=ManagementRegister&modify=submit">
                     <p>
+                        <--
+                        改用選單
+                        -->
                         編號A：<input type="text" name="ridA" value="<jsp:getProperty name="mile" property="ridA"/>"/>
                         編號B：<input type="text" name="ridB" value="<jsp:getProperty name="mile" property="ridB"/>"/>
                     </p>
