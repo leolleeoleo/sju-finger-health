@@ -3,7 +3,6 @@
  * and open the template in the editor.
  */
 
-
 import edu.sju.ee98.fingerprint.ACKException;
 import edu.sju.ee98.fingerprint.tfsmodule.TFSCharacterize;
 import edu.sju.ee98.health.server.Manager;
@@ -27,9 +26,7 @@ public class TestFinger {
     public static void main(String[] args) {
         Manager.manager();
         try {
-            Manager.module.setTimeout(0);
-            Manager.module.getSerial().openPort();
-            Manager.module.getSerial().setParams(SerialPort.BAUDRATE_19200, SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_NONE);
+            Manager.module.open();
             try {
                 int ss = Manager.module.getSize();
                 System.out.println(ss);
@@ -64,7 +61,7 @@ public class TestFinger {
             } catch (IOException ex) {
                 Logger.getLogger(TestFinger.class.getName()).log(Level.SEVERE, null, ex);
             }
-            Manager.module.getSerial().closePort();
+            Manager.module.close();
         } catch (SerialPortException ex) {
             Logger.getLogger(TestFinger.class.getName()).log(Level.SEVERE, null, ex);
         }

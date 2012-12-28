@@ -1,12 +1,12 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (c) 2012, St. John's University and/or its affiliates. All rights reserved.
  */
 package edu.sju.ee98.health.server;
 
 /**
+ * 主程式
  *
- * @author Leo
+ * @author 98405067
  */
 public class Main {
 

@@ -1,6 +1,5 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (c) 2012, St. John's University and/or its affiliates. All rights reserved.
  */
 package edu.sju.ee98.health.server.finger;
 
@@ -12,25 +11,31 @@ import jssc.SerialPortException;
 import jssc.SerialPortList;
 
 /**
+ * 串列埠掃描器
  *
- * @author Leo
+ * @author 98405067
  */
-public class SerialFinger extends Thread {
+public class SerialScanner extends Thread {
 
     private SerialStream serial;
     private FingerModule module;
 
+    /**
+     * 掃描串列埠
+     *
+     * @return 指紋模組
+     */
     public static FingerModule scan() {
         String list[] = SerialPortList.getPortNames();
-        SerialFinger scan[] = new SerialFinger[list.length];
+        SerialScanner scan[] = new SerialScanner[list.length];
         for (int i = 0; i < list.length; i++) {
-            System.out.println(list[i]);
-            scan[i] = new SerialFinger(list[i]);
+            Logger.getLogger(SerialScanner.class.getName()).log(Level.INFO, list[i]);
+            scan[i] = new SerialScanner(list[i]);
         }
         try {
             Thread.sleep(1000);
         } catch (InterruptedException ex) {
-            Logger.getLogger(SerialFinger.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SerialScanner.class.getName()).log(Level.SEVERE, null, ex);
         }
         for (int i = 0; i < list.length; i++) {
             if (scan[i].getModule() != null) {
@@ -40,12 +45,18 @@ public class SerialFinger extends Thread {
         return null;
     }
 
+    /**
+     * 測試串列埠
+     *
+     * @param port 埠名稱
+     * @return 指紋模組
+     */
     public static FingerModule test(String port) {
-        SerialFinger test = new SerialFinger(port);
+        SerialScanner test = new SerialScanner(port);
         try {
             Thread.sleep(1000);
         } catch (InterruptedException ex) {
-            Logger.getLogger(SerialFinger.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SerialScanner.class.getName()).log(Level.SEVERE, null, ex);
         }
         if (test.getModule() != null) {
             return test.getModule();
@@ -53,7 +64,7 @@ public class SerialFinger extends Thread {
         return null;
     }
 
-    private SerialFinger(String port) {
+    private SerialScanner(String port) {
         this.serial = new SerialStream(port);
         this.start();
     }
@@ -77,7 +88,7 @@ public class SerialFinger extends Thread {
             this.serial.closePort();
             this.serial = null;
         } catch (SerialPortException ex) {
-            Logger.getLogger(SerialFinger.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SerialScanner.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }
