@@ -1,0 +1,4 @@
+## Project Overview ##
+This fingerprint-health management system is to encourage people get close to nature and promote local tourism at the same time.
+The idea came from facebook’s “check-in” for smartphone users. Taking advantage of people’s interests in accomplishing goals, the fingerprint-health management system releases tasks every now and then. When users accomplish a task and check-in at sensor points with fingerprints, data will be sent immediately back to the system server. Hiking mileage will be calculated and added to users’ record accordingly. Users can also check their health information to help them revise their work-out plan.
+We hope the employment of this system gives our citizens more motives to go out. The increased popularity of outdoor activities can also benefit local tourism. Moreover, the expenditure of National health insurance can be reduced when citizens enjoy working out and live a healthier life.
